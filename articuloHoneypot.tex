@@ -1,5 +1,6 @@
 \documentclass[a4paper]{llncs}
 
+\usepackage[utf8]{inputenc}
 \usepackage{times,verbatim} % Please do not comment this
 \input{psfig.sty}
 
@@ -17,8 +18,9 @@
 \titlerunning{Cybersecurity in TIC-Scientist Network Infrastructures by Honeypots}
 % TIC en inglés es IT - JJ
 
-\author{Juan Luis Martin Acal\inst{1} \and Pedro A. Castillo Valdivieso\inst{1}
-\and Gustavo Romero López} %and JJ? - JJ
+\author{Juan Luis Martin Acal\inst{1}
+\and Pedro A. Castillo Valdivieso\inst{1}
+\and Gustavo Romero López\inst{1}} %and JJ? - JJ
 
 \authorrunning{Juan Luis Martin Acal}
 
@@ -91,15 +93,15 @@ In contrast to the corporate networks which usually have grown from
 the inside to outside  % inside to outside what? - JJ
 and which have  most hosts  behind the DMZ\footnote{Demilitarized
   Zone.} %citaaaaaa!!!- JJ
-, the scientist networks were born with a open % WITH A OPEN!!!!
-                                % Triple #fail inglés - JJ
-to outside conception but security and technical requirements due to
+, the scientist networks were born with a open philosofy
+ without focusing on security but on technical requirements due to
 the limited number of public IPs, were expanding private services to
-the intranet.\\\\The information related to research, patents,
+the intranet.
+
+The information related to research, patents,
 computer and human resources is a juicy target for hostile agents. % ¿en serio? ¿En la UGR? ¿Ese es el objetivo o lo es poner bitminers? - JJ
 Also, the big size of the DMZ %citaaaaa! - JJ
  makes it prone to be attacked massively and increases the possibility of finding a security breach or hidden advance vectors of attack.
-
 
 \subsection{Privacy and Passive Sensors}
 \label{sect:Privacy and Passive Sensors}
@@ -129,3 +131,4 @@ For three years each sensor collects information of more of half million of conn
 \section{Conclusions and Future Works}
 
 \end{document}
+
