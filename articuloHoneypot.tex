@@ -11,17 +11,15 @@
 
 \mainmatter
 
-\title{Cybersecurity in TIC-Scientist Network Infrastructures\\by
-  Honeypots:\\Catching Cyber Threat Passively}
-% No deberías forzar saltos de página, Latex es muy listo para estas
-% cosas - jj
-
-\titlerunning{Cybersecurity in TIC-Scientist Network Infrastructures by Honeypots}
+\title{Cybersecurity in TIC-Scientist Network Infrastructures by
+  Honeypots: Catching Cyber Threat Passively}
+% No deberías forzar saltos de página, Latex es muy listo para estas cosas - jj
+% Corregido.
+\titlerunning{Cybersecurity in IT-Scientist Network Infrastructures by Honeypots}
 % TIC en inglés es IT - JJ
-
-\author{Juan Luis Martin Acal\inst{1}
-\and Pedro A. Castillo Valdivieso\inst{1}
-\and Gustavo Romero López\inst{1}} %and JJ? - JJ
+% Corregido.
+\author{Juan Luis Martin Acal \and Pedro A. Castillo Valdivieso
+\and Gustavo Romero López \and Juan Julián Merelo Guervós}
 
 \authorrunning{Juan Luis Martin Acal}
 
@@ -30,28 +28,27 @@ Postfach 10 52 80,\\
 69042 Heidelberg, Germany\\
 \email{jlmacal@correo.ugr.es}\\
 \email{\{pcv, gustavo\}@ugr.es}\\
+\email{jjmerelo@gmail.com}\\
 \texttt{http://www.springer.de/comp/lncs/index.html}
 }
 
 \maketitle
 
 \begin{abstract}
-There is a balance between security concerns and the right to
-privacy. % dónde? Public policy? program design? IT infrastructure
-         % design? Lo hay o lo debería de haber?- JJ
-  Universities have a high risk of attack as a source of valuable
-  information. % ¿Sólo las universidades? ¿Por qué las universidades?
-               % - JJ
-Private and scientific information have a enormous value for an
-attacker but the end user is worried about his privacy too. %Par de
-                                %fallos gordos de inglés. Por favor,
-                                %tened cuidado- JJ
+It should be a balance between security concerns and the right to
+privacy in the use of IT infrastructures. Universities have a high risk of attack as a source of valuable information and resources because they were designed with an open and decentralized philosophy in favour of the transmission of knowledge.
+%¿Sólo las universidades? ¿Por qué las universidades? - JJ
+%Porque en su concepción se fomentó más el principio de facilitar el acceso a la información que su protección. - JL
+Private and scientific information have a enormous value for an attacker but the end user is worried about his privacy too. %Par de
+             %fallos gordos de inglés. Por favor,
+             %tened cuidado- JJ
  For this reason passive detection methods in cybersecurity like
- honeypots are the cornerstone in the defence plan. We expose the
+ honeypots are the cornerstone in its defence plan. We expose the
  practical case of the University of Granada in the application of
- honeypots for the detection and study of intrusions. 
-% ¿Y cuál es el objetivo? ¿Caso de éxito? ¿Caso de fracaso? ¿Hay algo
-% original en la implementación de los honeypots? - JJ
+ honeypots for the detection and study of intrusions which avoid intrusive techniques like the direct analysis of the traffic through networking devices. Also we explain weaknesses found during operation as is possible through machine learning improvement. 
+ 
+% ¿Y cuál es el objetivo? ¿Caso de éxito? ¿Caso de fracaso? ¿Hay algo original en la implementación de los honeypots? - JJ
+%El objetivo es mostrar que son como medios de detección muy efectivos sin necesidad de ser intrusivos en el trafico de red, pero que requieren de machine learning para solventar algunas deficiencias en cuanto a la deteccion de amenazas avanzadas se refiere. Exito https://www.honeynet.org/about, https://es.scribd.com/doc/174841947/Memoria, y "llamare" a los argentinos a ver si tienen algo publicado de como les va con su sistema - JL
 \end{abstract}
 
 
@@ -62,30 +59,31 @@ From the earliest days, % ¿de qué? -JJ
   attacks. Nowadays, % pasas de earliest days a nowadays sin solución
                      % de continuidad... algo tendrá que haber en
                      % medio - JJ
+%Citar informes Norton y kaspersky anuales. - JL
  the number of attacks increases continuously and scientist networks
  are a special and interesting case. % cita - JJ
  There is a strong demand of security in the network and the services which are listening. On the other hand, the end users demand privacy in his network traffic. In this scene the honeypots have an important role in the detection and protection against cyber attacks.
 % ¿Por qué la universidad? ¿Qué le hace especial? Si tienes una
 % universidad y quieres aplicarlo, ¿qué tienes que hacer? - JJ
 
-% No suele haber subsecciones en la introducción. 
+%Citar informes tecnicos del concepto abierto de las redes cientificas. - JL
+%Si tienes una universidad solo necesitas permiso del órgano responsable de la infraestructura de red y personal formado en administración de redes y sistemas. - JL
+
+%No suele haber subsecciones en la introducción. 
+%Unificar o sacar fuera del la introducción. -JL
 \subsection{Cyber-Space and Cyber-Threats}
 \label{sect:Scientist Networks}
 
 The cyberspace is a virtual space that wraps all types of digital
 %Agh, ciberespacio... ¿todo esto para qué ? - JJ
+%Porque es un termino muy sobreexplotado por estar de moda por militares, inteligencia y empresas, cada cual se permite el definirlo a su gusto al intoducirlo. 
 communication  infrastructures and the entities that use them. The
-hostile actions from these entities against the security and safety of
-the information and others entities are ciberthreats. Internet is the
-most popular inhabitant of this space and for years we have seen how
+hostile actions from these entities against the security and safety of the information and others entities are ciberthreats. Internet is the most popular inhabitant of this space and for years we have seen how
 %agh, internet como habitante del ciberespacio... qué poco me gustan
 %los clichés - JJ
-the number and complexity of attacks against information and resources
-has increased. This increase is motivated by for economic, politic or
-military interests or by the same entities interested in exercise a
-bigger control over communication freedom in the cyberspace.  % Citas,
-                                % citas y más citas - JJ
-
+%No te falta razón es un cliché...
+the number and complexity of attacks against information and resources has increased. This increase is motivated by for economic, politic or military interests or by the same entities interested in exercise a bigger control over communication freedom in the cyberspace.  % Citas,
+                    % citas y más citas - JJ
 
 \subsection{Scientist Networks}
 \label{sect:Scientist Networks}
