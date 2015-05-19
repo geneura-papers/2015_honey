@@ -36,18 +36,14 @@ Postfach 10 52 80,\\
 
 \begin{abstract}
 It should be a balance between security concerns and the right to
-privacy in the use of IT infrastructures. Universities have a high risk of attack as a source of valuable information and resources because they were designed with an open and decentralized philosophy in favour of the transmission of knowledge.
+privacy in the use of IT infrastructures. Scientist networks have a high risk of attack as a source of valuable information and resources because they were designed with an open and decentralized philosophy, in favour of the transmission of knowledge when security wasn't a critical section\cite{iris-proyecto}
 %¿Sólo las universidades? ¿Por qué las universidades? - JJ
-%Porque en su concepción se fomentó más el principio de facilitar el acceso a la información que su protección. - JL
+%Porque en la concepción de sus redes se fomentó más el principio de facilitar el acceso a la información frente a su protección - JL
 Private and scientific information have a enormous value for an attacker but the end user is worried about his privacy too. %Par de
              %fallos gordos de inglés. Por favor,
              %tened cuidado- JJ
- For this reason passive detection methods in cybersecurity like
- honeypots are the cornerstone in its defence plan. We expose the
- practical case of the University of Granada in the application of
- honeypots for the detection and study of intrusions which avoid intrusive techniques like the direct analysis of the traffic through networking devices. Also we explain weaknesses found during operation as is possible through machine learning improvement. 
- 
-% ¿Y cuál es el objetivo? ¿Caso de éxito? ¿Caso de fracaso? ¿Hay algo original en la implementación de los honeypots? - JJ
+For this reason passive detection methods in cybersecurity like honeypots are the cornerstone in its defence plan. We expose the practical case of the University of Granada in the application of honeypots for the detection and study of intrusions which avoid intrusive techniques like the direct analysis of the traffic through networking devices. Also we explain weaknesses found during operation as is possible through machine learning improvement. 
+ % ¿Y cuál es el objetivo? ¿Caso de éxito? ¿Caso de fracaso? ¿Hay algo original en la implementación de los honeypots? - JJ
 %El objetivo es mostrar que son como medios de detección muy efectivos sin necesidad de ser intrusivos en el trafico de red, pero que requieren de machine learning para solventar algunas deficiencias en cuanto a la deteccion de amenazas avanzadas se refiere. Exito https://www.honeynet.org/about, https://es.scribd.com/doc/174841947/Memoria, y "llamare" a los argentinos a ver si tienen algo publicado de como les va con su sistema - JL
 \end{abstract}
 
@@ -60,14 +56,13 @@ From the earliest days, % ¿de qué? -JJ
                      % de continuidad... algo tendrá que haber en
                      % medio - JJ
 %Citar informes Norton y kaspersky anuales. - JL
- the number of attacks increases continuously and scientist networks
- are a special and interesting case. % cita - JJ
- There is a strong demand of security in the network and the services which are listening. On the other hand, the end users demand privacy in his network traffic. In this scene the honeypots have an important role in the detection and protection against cyber attacks.
+the number of attacks increases continuously\cite{cni-ccn-tendencias}\cite{esset-tendencias} and scientist networks are a special and interesting case. % cita - JJ
+%Corregido
+There is a strong demand of security in the network and the services which are listening. On the other hand, the end users demand privacy in his network traffic. In this scene the honeypots have an important role in the detection and protection against cyber attacks.
 % ¿Por qué la universidad? ¿Qué le hace especial? Si tienes una
 % universidad y quieres aplicarlo, ¿qué tienes que hacer? - JJ
-
-%Citar informes tecnicos del concepto abierto de las redes cientificas. - JL
-%Si tienes una universidad solo necesitas permiso del órgano responsable de la infraestructura de red y personal formado en administración de redes y sistemas. - JL
+%Diseño abierto y sin seguridad original y aun muy implantado RED-IRIS - JL
+%Si tienes una universidad solo necesitas permiso del órgano responsable de la infraestructura de red y equipo multidisciplinar formado administración de redes y sistemas. - JL
 
 %No suele haber subsecciones en la introducción. 
 %Unificar o sacar fuera del la introducción. -JL
@@ -84,7 +79,6 @@ hostile actions from these entities against the security and safety of the infor
 %No te falta razón es un cliché...
 the number and complexity of attacks against information and resources has increased. This increase is motivated by for economic, politic or military interests or by the same entities interested in exercise a bigger control over communication freedom in the cyberspace.  % Citas,
                     % citas y más citas - JJ
-
 \subsection{Scientist Networks}
 \label{sect:Scientist Networks}
 In contrast to the corporate networks which usually have grown from
@@ -119,7 +113,6 @@ Sensors were deployed in different production subnets and each content honeypot 
 
 The collector is a corporate database that feeds the incidents management system and is the core of all information analysis.
 
-
 \subsection{Attacks Profiles}
 
 For three years each sensor collects information of more of half million of connections. The information analysis shows that prevail external attacks for all types of the vulnerabilities emulates by the honeypots.
@@ -131,10 +124,29 @@ For three years each sensor collects information of more of half million of conn
 
 \section{Conclusions and Future Works}
 
-\begin{thebibliography}{2}
+\begin{thebibliography}{5}
+\bibitem{iris-proyecto}
+Subdirección General de Organización y Automación, Secretaía General Técnica, Ministerio de Educación y Ciencia:
+Proyecto IRIS.
+November 1985.\\
+URL: https://www.rediris.es/rediris/historia/programa-iris.pdf
+%
+\bibitem{esset-tendencias}
+ESSET Latino América:
+Tendencias 2015: El mundo corporativo en la mira.
+January 2015.\\
+URL: http://http://www.welivesecurity.com/wp-content/uploads/2015/01/tendencias\_2015\_eset\_mundo\_corporativo.pdf
+Note: Chapter 2, page 6
+%
+\bibitem{cni-ccn-tendencias}
+CNI-Centro Critográfico Nacional:
+Informe de Amenazas CCN-CERT IA-03/14: Ciberamenazas 2013 y Tendencias 2014.
+October 2014\\
+URL: https://www.ccn-cert.cni.es/publico/dmpublidocuments/CCN-CERT\_IA-03-14-Ciberamenazas\_2013\_Tendencias\_2014-publico.pdf
+Note: Prologue, page 7
 %
 \bibitem{dionaea}
-Bruce, K.B., Cardelli, L., Pierce, B.C.:
+Mark Schloesser:
 Comparing Object Encodings.
 In: Abadi,~M., Ito,~T. (eds.):
 Theoretical Aspects of Computer Software.
