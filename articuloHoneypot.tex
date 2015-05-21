@@ -1,7 +1,5 @@
 \documentclass[a4paper]{llncs}
-
 \usepackage[utf8]{inputenc}
-
 \usepackage{times,verbatim} % Please do not comment this
 \input{psfig.sty}
 
@@ -36,29 +34,28 @@ Postfach 10 52 80,\\
 
 \begin{abstract}
 It should be a balance between security concerns and the right to
-privacy in the use of IT infrastructures. Scientist networks have a high risk of attack as a source of valuable information and resources because they were designed with an open and decentralized philosophy, in favour of the transmission of knowledge when security wasn't a critical section\cite{iris-proyecto}
+privacy in the use of IT infrastructures. Scientist networks have a high risk of attack as a source of valuable information and resources because they were designed with an open and decentralized philosophy, in favour of the transmission of knowledge when security wasn't a critical section\cite{iris-proyecto}.
 %¿Sólo las universidades? ¿Por qué las universidades? - JJ
 %Porque en la concepción de sus redes se fomentó más el principio de facilitar el acceso a la información frente a su protección - JL
 Private and scientific information have a enormous value for an attacker but the end user is worried about his privacy too. %Par de
              %fallos gordos de inglés. Por favor,
              %tened cuidado- JJ
-For this reason passive detection methods in cybersecurity like honeypots are the cornerstone in its defence plan. We expose the practical case of the University of Granada in the application of honeypots for the detection and study of intrusions which avoid intrusive techniques like the direct analysis of the traffic through networking devices. Also we explain weaknesses found during operation as is possible through machine learning improvement. 
+For this reason passive detection methods in cybersecurity like honeypots are the cornerstone in its defence plan. We expose the practical case of the University of Granada in the application of honeypots for the detection and study of intrusions which avoid intrusive techniques like the direct analysis of the traffic through networking devices. Also we expose the difficulties founded in the information's analysis gathered. Finally we propose the application of machine learning to overcome them in future works.
  % ¿Y cuál es el objetivo? ¿Caso de éxito? ¿Caso de fracaso? ¿Hay algo original en la implementación de los honeypots? - JJ
 %El objetivo es mostrar que son como medios de detección muy efectivos sin necesidad de ser intrusivos en el trafico de red, pero que requieren de machine learning para solventar algunas deficiencias en cuanto a la deteccion de amenazas avanzadas se refiere. Exito https://www.honeynet.org/about, https://es.scribd.com/doc/174841947/Memoria, y "llamare" a los argentinos a ver si tienen algo publicado de como les va con su sistema - JL
 \end{abstract}
 
 
 \section{Introduction}
-
 From the earliest days, % ¿de qué? -JJ
   networks have been experiencing an increasing number of
   attacks. Nowadays, % pasas de earliest days a nowadays sin solución
                      % de continuidad... algo tendrá que haber en
                      % medio - JJ
 %Citar informes Norton y kaspersky anuales. - JL
-the number of attacks increases continuously\cite{cni-ccn-tendencias}\cite{esset-tendencias} and scientist networks are a special and interesting case. % cita - JJ
+the number of attacks increases continuously\cite{esset-tendencias}\cite{cni-ccn-tendencias-2014}. Scientist networks are a special and interesting case, % cita - JJ
 %Corregido
-There is a strong demand of security in the network and the services which are listening. On the other hand, the end users demand privacy in his network traffic. In this scene the honeypots have an important role in the detection and protection against cyber attacks.
+in one hand there is a strong demand of security in the network and the services which are listening. On the other hand, the end users demand privacy in his network traffic. In this scene the honeypots have an important role in the detection and protection against cyber attacks.
 % ¿Por qué la universidad? ¿Qué le hace especial? Si tienes una
 % universidad y quieres aplicarlo, ¿qué tienes que hacer? - JJ
 %Diseño abierto y sin seguridad original y aun muy implantado RED-IRIS - JL
@@ -72,64 +69,83 @@ There is a strong demand of security in the network and the services which are l
 The cyberspace is a virtual space that wraps all types of digital
 %Agh, ciberespacio... ¿todo esto para qué ? - JJ
 %Porque es un termino muy sobreexplotado por estar de moda por militares, inteligencia y empresas, cada cual se permite el definirlo a su gusto al intoducirlo. 
-communication  infrastructures and the entities that use them. The
-hostile actions from these entities against the security and safety of the information and others entities are ciberthreats. Internet is the most popular inhabitant of this space and for years we have seen how
+communication  infrastructures and the entities that use them. The hostile actions from these entities against the security and safety of the information and others entities are ciberthreats. Internet is the most popular inhabitant of this space and for years we have seen how
 %agh, internet como habitante del ciberespacio... qué poco me gustan
 %los clichés - JJ
 %No te falta razón es un cliché...
-the number and complexity of attacks against information and resources has increased. This increase is motivated by for economic, politic or military interests or by the same entities interested in exercise a bigger control over communication freedom in the cyberspace.  % Citas,
-                    % citas y más citas - JJ
+the number and complexity of attacks against information and resources has increased. This increase is motivated by for economic, politic or military interests or by the same entities interested in exercise a bigger control over communication freedom in the cyberspace\cite{cni-ccn-tendencias-2014}\cite{cni-ccn-tendencias-2015}.
+% Citas,
+% citas y más citas - JJ
+% corregido - JL
 \subsection{Scientist Networks}
 \label{sect:Scientist Networks}
 In contrast to the corporate networks which usually have grown from
 the inside to outside % inside to outside what? - JJ
-and which have most hosts behind the Demilitarized
- Zone (DMZ), %citaaaaaa!!!- JJ
-the scientist networks were born with a open philosofy
- without focusing on security but on technical requirements due to
-the limited number of public IPs, were expanding private services to
-the intranet.
+and which have most hosts behind the demilitarized
+zone (DMZ), %citaaaaaa!!!- JJ
+the scientist networks were born with a open philosofy without focusing on security but on technical requirements due to the limited number of public IPs, were expanding private services to the intranet.\cite{iris-proyecto}
 
 The information related to research, patents, computer and human resources is a juicy target for hostile agents. Also, the big size of the DMZ %citaaaaa! - JJ
  makes it prone to a massive attack and increases the possibility of finding a security breach or hidden advance vectors of attack.
 
 \subsection{Privacy and Passive Sensors}
 \label{sect:Privacy and Passive Sensors}
-A honeypot is a trap that exposes itself, while is scanned, probed or compromised by a hostile entity, the trap collect information about the malicious activity.
-
-We differentiate between hierarchy and interaction in our taxonomy. The hierarchy is the complexity goes from a simple service like ssh, through a network, to a cloud. The interaction is the degree of fidelity in the response of the trap and goes from low to high.
+A honeypot is a trap that exposes itself, while is scanned, probed or compromised by a hostile entity, the trap collect information about the malicious activity. We differentiate between hierarchy and interaction in our taxonomy. The hierarchy is the complexity goes from a simple service like SSH, through a network, to a cloud. The interaction is the degree of fidelity in the response of the trap and goes from low to high.\\
 
 TABLE HERE.
 
 There isn't a ideal configuration of features because is the nature of the threats and the infrastructure which we want to protect, the key for a correct selection of them. In a software development environment, high interactions is used for test a new product with {\it fuzzers} or another type of pentesting\footnote{Penetration Testing.} tool in order to discover potential vulnerabilities. On the other hand, low interaction honeypots are used like intrusion detection systems, warning about activity of scans or jumping attempts from compromised internal hosts. Both share a common point: they are not intrusive with the network traffic.
 
 \section{Deployment of a Security System Based in Honeypots}
-
 The architecture of the system is divided in two fronts: detection and management of the ciberthreats. The detection front usually are based on honeypots, one the most valuable tools at hand for this purpose.
 
 \subsection{Sensors and Collector}
-
 Sensors were deployed in different production subnets and each content honeypot software. Specifically Dionaea\cite{dionaea} and Kippo\cite{kippo} which are low and medium interaction honeypot respectively. Each sensor has local data bases for save the information attacks efficiently in space while is waiting for its saved in the collector in order to keep the information by duplicate and not to increase the network traffic in case of massive scans or attacks. Obviously, in the time space between information dumps each sensor sends by telegram incidents defined by the security operator like critical.
 
 The collector is a corporate database that feeds the incidents management system and is the core of all information analysis.
 
 \subsection{Attacks Profiles}
+We distinguish three attributes for each cyberthreat's profile:
+\begin{itemize}
+\item Vector, which will be single or multiple according to the number of simultaneous vulnerabildiades that the cyberthreat explodes.
+\item Persistence, if the cyberthreat is continuous in time and establishes monitoring and control mechanisms with hostile agent.
+\item Advanced, if the cyberthreat used mechanisms in order to hide its activity in the system.
+\end{itemize}
 
-For three years each sensor collects information of more of half million of connections. The information analysis shows that prevail external attacks for all types of the vulnerabilities emulates by the honeypots.
+One of the greatest dangers for IT infrastructure of governments, public administrations and companies are advance persistence threats. Usually APT are related with ciberspying and elite groups of cibercrime and they are attacks directed against specific infrastructure. For this reason it is a priority to detect and study them.\\
 
+For three years each sensor collected information of more of half million of connections. The information's analysis shows the next points:
+\begin{itemize}
+\item External attacks are more frequent than internal attacks.
+\item In one hand the most frequent type of external attacks was weak credentials disclosure. On the other hand the most frequent type of internal attacks was malware propagation.
+\item Countries outside OTAN are the most active in the process of scanning and searching for vulnerabilities but curiously most of the intrusions come from OTAN member or member candidate countries. It is important to note that this data is dependent on the geolocation of where they are taken.
+\end{itemize}
+DATOS DEL ZETSU
+
+Malware propagations usually owns to advance and persistence threats, also have a simple vector of attack. Malware scans infected through the ms08\_67 for immediately attempt to connect with a command ad control server (C\&C). The exploitation of SSH or MySQL weak credentials is the first step to gains control o access to data in a server but a few connections show a clever behavior of advanced or persistent threat.
+
+MAS DATOS DEL ZETSU
+
+AQUI ESTADISTICAS POR PUERTOS
+EJEMPLO MULTIVECTOR CAPTURADO
+EJEMPLO PERSISTENCIA
 
 \section{Weaknesses and Strengths of Honeypots}
+TODO MOLA SALVO CUANDO TIENES QUE PONERTE A INVESTIGAR APT
 
 \section{Honeypots, Elements in Hybrid Machine Learning S.I.E.M}
+VECTORES HONYPOT VS CONJUTOS DE DATOS DEL LEARNING MACHINE GROUP
+FALTA CHICA, CAPA DE RED, TCPDUMP O IDS PILLANDO DATA
 
 \section{Conclusions and Future Works}
+HAY QUE METER MACHINE LEARNING Y MINERIA DE DATOS DE LA BUENA A ESTOS DISPOSITIVOS.
 
 \begin{thebibliography}{5}
 \bibitem{iris-proyecto}
 Subdirección General de Organización y Automación, Secretaía General Técnica, Ministerio de Educación y Ciencia:
 Proyecto IRIS.
 November 1985.\\
-URL: https://www.rediris.es/rediris/historia/programa-iris.pdf
+URL:https://www.rediris.es/rediris/historia/programa-iris.pdf
 %
 \bibitem{esset-tendencias}
 ESSET Latino América:
@@ -138,28 +154,26 @@ January 2015.\\
 URL: http://http://www.welivesecurity.com/wp-content/uploads/2015/01/tendencias\_2015\_eset\_mundo\_corporativo.pdf
 Note: Chapter 2, page 6
 %
-\bibitem{cni-ccn-tendencias}
+\bibitem{cni-ccn-tendencias-2014}
 CNI-Centro Critográfico Nacional:
 Informe de Amenazas CCN-CERT IA-03/14: Ciberamenazas 2013 y Tendencias 2014.
-October 2014\\
-URL: https://www.ccn-cert.cni.es/publico/dmpublidocuments/CCN-CERT\_IA-03-14-Ciberamenazas\_2013\_Tendencias\_2014-publico.pdf
-Note: Prologue, page 7
+October 2014.\\
+URL:https://www.ccn-cert.cni.es/publico/dmpublidocuments/CCN-CERT\_IA-03-14-Ciberamenazas\_2013\_Tendencias\_2014-publico.pdf
+Note: Prologue, page 7,8
+%
+\bibitem{cni-ccn-tendencias-2015}
+CNI-Centro Critográfico Nacional:
+CCN-CERT IA-09/15 Ciberamenazas\_2014 Tendencias\_2015 - Resumen Ejecutivo
+April 2015.\\
+URL:https://www.ccn-cert.cni.es/publico/dmpublidocuments/IE-Ciberamenazas2014-Tendencias-2015.pdf
 %
 \bibitem{dionaea}
 Mark Schloesser:
-Comparing Object Encodings.
-In: Abadi,~M., Ito,~T. (eds.):
-Theoretical Aspects of Computer Software.
-Lecture Notes in Computer Science, Vol.~1281.
-Springer-Verlag, Berlin Heidelberg New York (1997) 415--438
+URL: http://dionaea.carnivore.it/
 %
 \bibitem{kippo}
-Bruce, K.B., Cardelli, L., Pierce, B.C.:
-Comparing Object Encodings.
-In: Abadi,~M., Ito,~T. (eds.):
-Theoretical Aspects of Computer Software.
-Lecture Notes in Computer Science, Vol.~1281.
-Springer-Verlag, Berlin Heidelberg New York (1997) 415--438
+desaster:
+https://github.com/desaster
 %
 \end{thebibliography}
 
