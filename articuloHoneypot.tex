@@ -120,18 +120,28 @@ For three years each sensor collected information of more of half million of con
 \item In one hand the most frequent type of external attacks was weak credentials disclosure. On the other hand the most frequent type of internal attacks was malware propagation.
 \item Countries outside OTAN are the most active in the process of scanning and searching for vulnerabilities but curiously most of the intrusions come from OTAN member or member candidate countries. It is important to note that this data is dependent on the geolocation of where they are taken.
 \end{itemize}
-DATOS DEL ZETSU
+
+%EXAMPLE DATOS DEL ZETSU
 
 Malware propagations usually owns to advance and persistence threats, also have a simple vector of attack. Malware scans infected through the ms08\_67 for immediately attempt to connect with a command ad control server (C\&C). The exploitation of SSH or MySQL weak credentials is the first step to gains control o access to data in a server but a few connections show a clever behavior of advanced or persistent threat.
 
-MAS DATOS DEL ZETSU
+%ESTADISTICAS DEL PFC
 
-AQUI ESTADISTICAS POR PUERTOS
-EJEMPLO MULTIVECTOR CAPTURADO
-EJEMPLO PERSISTENCIA
+\section{Strengths and Weaknesses of Honeypots}
 
-\section{Weaknesses and Strengths of Honeypots}
-TODO MOLA SALVO CUANDO TIENES QUE PONERTE A INVESTIGAR APT
+The strengths of the deployed system were:
+\begin{itemize}
+\item It was not intrusive network traffic, remained the privacy of infrastructure's users.
+\item The computational and economic resources needed  for passive detection are lower because we have only the traffic belong to a potential cyberthreat.
+\item When the communication between the sensor and external infrastructure that supports the cyberthreat is ciphered, it is essential catch the information from the application layer.
+\end{itemize}
+
+The weakness of the deployed system were:
+\begin{itemize}
+\item There are many cyberthreats focused in the network layer, usually related with deny of services and spoofing. And this information is very valuable because this kind of attack are a very important element in both simple and complex attacks.
+\item Like others deception tools, honeypots must show itself like interesting target for a attacker and avoid to be easily recognizable by fingerprint techniques %REFERENCIA AL ARTICULO DE PABLO GONZALES
+\end{itemize}
+
 
 \section{Honeypots, Elements in Hybrid Machine Learning S.I.E.M}
 VECTORES HONYPOT VS CONJUTOS DE DATOS DEL LEARNING MACHINE GROUP
