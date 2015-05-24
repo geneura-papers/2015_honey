@@ -33,8 +33,7 @@ Postfach 10 52 80,\\
 \maketitle
 
 \begin{abstract}
-It should be a balance between security concerns and the right to
-privacy in the use of IT infrastructures. Scientist networks have a high risk of attack as a source of valuable information and resources because they were designed with an open and decentralized philosophy, in favour of the transmission of knowledge when security wasn't a critical section\cite{iris-proyecto}.
+It should be a balance between security concerns and the right to privacy in the use of IT infrastructures. Scientist networks have a high risk of attack as a source of valuable information and resources because they were designed with an open and decentralized philosophy, in favour of the transmission of knowledge when security wasn't a critical section\cite{iris-proyecto}.
 %¿Sólo las universidades? ¿Por qué las universidades? - JJ
 %Porque en la concepción de sus redes se fomentó más el principio de facilitar el acceso a la información frente a su protección - JL
 Private and scientific information have a enormous value for an attacker but the end user is worried about his privacy too. %Par de
@@ -138,10 +137,11 @@ The strengths of the deployed system were:
 
 The weakness of the deployed system were:
 \begin{itemize}
-\item There are many cyberthreats focused in the network layer, usually related with deny of services and spoofing. And this information is very valuable because this kind of attack are a very important element in both simple and complex attacks.
-\item Like others deception tools, honeypots must show itself like interesting target for a attacker and avoid to be easily recognizable by fingerprint techniques %REFERENCIA AL ARTICULO DE PABLO GONZALES
+\item There are many cyberthreats focused in the network layer, usually related with deny of services and spoofing. This information is very valuable because this kind of attack are a very important element not only in simple vector attacks, in multivector advanced and persistent attacks too. Honeypots only fetch information from the application layer so they lose essential information for reconstruction of complex attack.
+\item Like others deception tools, honeypots must show itself like interesting target for a attacker and avoid them to be easily recognizable by fingerprint techniques. Default installations and configurations in low an medium interaction honeypot are easily detected by a human attacker or a intelligent threat like advanced malware. %REFERENCIA AL ARTICULO DE PABLO GONZALES
+\item High interaction honeypot are dangerous in production's environments.
+\item When attacker has knowledge of the infrastructure 
 \end{itemize}
-
 
 \section{Honeypots, Elements in Hybrid Machine Learning S.I.E.M}
 VECTORES HONYPOT VS CONJUTOS DE DATOS DEL LEARNING MACHINE GROUP
