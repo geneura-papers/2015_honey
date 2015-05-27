@@ -98,49 +98,46 @@ There isn't a ideal configuration of features because is the nature of the threa
 \section{Deployment of a Security System Based in Honeypots}
 The architecture of the system is divided in two fronts: detection and management of the ciberthreats. The detection front usually are based on honeypots, one the most valuable tools at hand for this purpose.
 
-\subsection{Sensors and Collector}
-Sensors were deployed in different production subnets and each content honeypot software. Specifically Dionaea\cite{dionaea} and Kippo\cite{kippo} which are low and medium interaction honeypot respectively. Each sensor has local data bases for save the information attacks efficiently in space while is waiting for its saved in the collector in order to keep the information by duplicate and not to increase the network traffic in case of massive scans or attacks. Obviously, in the time space between information dumps each sensor sends by telegram incidents defined by the security operator like critical.
+Sensors were deployed in different production subnets and each content honeypot software. Specifically Dionaea\cite{dionaea} and Kippo\cite{kippo} which are low and medium interaction honeypot respectively. Each sensor has local data bases for save the information attacks efficiently in space while is waiting for its saved in the collector in order to keep the information by duplicate and not to increase the network traffic in case of massive scans or attacks. Obviously, in the time space between information dumps each sensor sends by telegram incidents defined by the security operator like critical. The collector is a corporate database that feeds the incidents management system and is the core of all information analysis.
 
-The collector is a corporate database that feeds the incidents management system and is the core of all information analysis.
+PONER GRAFICO
 
-\subsection{Attacks Profiles}
-We distinguish three attributes for each cyberthreat's profile:
-\begin{itemize}
-\item Vector, which will be single or multiple according to the number of simultaneous vulnerabildiades that the cyberthreat explodes.
-\item Persistence, if the cyberthreat is continuous in time and establishes monitoring and control mechanisms with hostile agent.
-\item Advanced, if the cyberthreat used mechanisms in order to hide its activity in the system.
-\end{itemize}
-
-One of the greatest dangers for IT infrastructure of governments, public administrations and companies are advance persistence threats. Usually APT are related with ciberspying and elite groups of cibercrime and they are attacks directed against specific infrastructure. For this reason it is a priority to detect and study them.\\
-
+\section{Data analyse}
 For three years each sensor collected information of more of half million of connections. The information's analysis shows the next points:
 \begin{itemize}
-\item External attacks are more frequent than internal attacks.
+\item External attacks are more frequent than internal attacks. %cita con datos
 \item In one hand the most frequent type of external attacks was weak credentials disclosure. On the other hand the most frequent type of internal attacks was malware propagation.
 \item Countries outside OTAN are the most active in the process of scanning and searching for vulnerabilities but curiously most of the intrusions come from OTAN member or member candidate countries. It is important to note that this data is dependent on the geolocation of where they are taken.
 \end{itemize}
 
-%EXAMPLE DATOS DEL ZETSU
+One of the greatest dangers for IT infrastructures of governments, public administrations and companies are advance persistence threats. The cyberthreat is persistent if it is continuous in time and establishes monitoring and control mechanisms with hostile agent, and it is advanced because uses mechanisms in order to hide its activity in the system. Usually APT are related with ciberspying and elite groups of cibercrime and they are attacks directed against a specific infrastructure. For this reason it is a priority to detect and study them.
+
+DAR COHERENCIA, DESARROLLAR LOS PUNTOS DADOS ARRIBA
 
 Malware propagations usually owns to advance and persistence threats, also have a simple vector of attack. Malware scans infected through the ms08\_67 for immediately attempt to connect with a command ad control server (C\&C). The exploitation of SSH or MySQL weak credentials is the first step to gains control o access to data in a server but a few connections show a clever behavior of advanced or persistent threat.
 
-%ESTADISTICAS DEL PFC
 
 \section{Strengths and Weaknesses of Honeypots}
-
-The strengths of the deployed system were:
+The strengths of honeypot are were:
 \begin{itemize}
-\item It was not intrusive network traffic, remained the privacy of infrastructure's users.
-\item The computational and economic resources needed  for passive detection are lower because we have only the traffic belong to a potential cyberthreat.
-\item When the communication between the sensor and external infrastructure that supports the cyberthreat is ciphered, it is essential catch the information from the application layer.
+\item It was not intrusive with network traffic, remained the privacy of infrastructure users. This is a important point because any try of to catch indirect traffic of network would been seen as a threat by other users and a infringement of the use conditions of the network and legality.
+\item The computational and economic resources needed for passive detection are lower because we have only the traffic belong to a potential cyber threat. This an alternative approach to other solutions more expensive like intrusion detection systems based in hardware.
+\item Cyberthreats like advanced malware uses ciphered communications in order to dodge detection systems in the network layer, the only way to catch information its from inside of the compromised node. This is essential if we want analyse how persistence cibertheraths monitors the compromised host and what informations sent outside to its C\&C network.
 \end{itemize}
 
-The weakness of the deployed system were:
+The weakness of the honeypot are:
 \begin{itemize}
+<<<<<<< HEAD
+\item There are many cyberthreats focused in the network layer, usually related with deny of services and spoofing. This information is very valuable because this kind of attack are a very important element not only in simple vector attacks, in multivector advanced and persistent attacks too. Honeypots only fetch information from the application layer so they lose essential information for reconstruction of complex attacks.
+\item Like others deception tools, honeypots must show itself like interesting target for a attacker and avoid them to be easily recognizable by fingerprint techniques. Default installations and configurations in low an medium interaction honeypot are easily detected by a human attacker or a intelligent threat like advanced malware.
+\item High interaction honeypots are dangerous in production environments because the monitored sensor is completely real and all his potential in order to attack its periphery. Usually they are deploying in isolated subnets with outgoing traffic strongly restricted in company of others honeypots, that configuration is called honeynet.
+\item When attacker has knowledge of the infrastructure, honeypots are easily dodged so must be deployed together with politics of use like change its subnets or IP every so often.
+=======
 \item There are many cyberthreats focused in the network layer, usually related with deny of services and spoofing. This information is very valuable because this kind of attack are a very important element not only in simple vector attacks, in multivector advanced and persistent attacks too. Honeypots only fetch information from the application layer so they lose essential information for reconstruction of complex attack.
 \item Like others deception tools, honeypots must show itself like interesting target for a attacker and avoid them to be easily recognizable by fingerprint techniques. Default installations and configurations in low an medium interaction honeypot are easily detected by a human attacker or a intelligent threat like advanced malware. %REFERENCIA AL ARTICULO DE PABLO GONZALES
 \item High interaction honeypot are dangerous in production's environments.
 \item When attacker has knowledge of the infrastructure 
+>>>>>>> ea1890cccad29fffe1bec46051aaada94f449890
 \end{itemize}
 
 \section{Honeypots, Elements in Hybrid Machine Learning S.I.E.M}
