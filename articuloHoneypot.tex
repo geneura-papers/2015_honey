@@ -96,7 +96,7 @@ TABLE HERE.
 There isn't a ideal configuration of features because is the nature of the threats and the infrastructure which we want to protect, the key for a correct selection of them. In a software development environment, high interactions is used for test a new product with {\it fuzzers} or another type of pentesting\footnote{Penetration Testing.} tool in order to discover potential vulnerabilities. On the other hand, low interaction honeypots are used like intrusion detection systems, warning about activity of scans or jumping attempts from compromised internal hosts. Both share a common point: they are not intrusive with the network traffic.
 
 \section{Deployment of a Security System Based in Honeypots}
-The architecture of the system is divided in two fronts: detection and management of the ciberthreats. The detection front usually are based on honeypots, one the most valuable tools at hand for this purpose.
+The architecture of the system is divided in two fronts: detection and management of the ciberthreats. The detection front usually are based on honeypots, one the most valuable tools at hand for this purpose.\\
 
 Sensors were deployed in different production subnets and each content honeypot software. Specifically Dionaea\cite{dionaea} and Kippo\cite{kippo} which are low and medium interaction honeypot respectively. Each sensor has local data bases for save the information attacks efficiently in space while is waiting for its saved in the collector in order to keep the information by duplicate and not to increase the network traffic in case of massive scans or attacks. Obviously, in the time space between information dumps each sensor sends by telegram incidents defined by the security operator like critical. The collector is a corporate database that feeds the incidents management system and is the core of all information analysis.
 
@@ -116,7 +116,8 @@ Malware propagation usually belong to advanced and persistent threats and come a
 
 But not always is easy follow the clue for rebuilding of a multivector attack. Usually the exploitation of SSH or MySQL weak credentials is the first step to gain the control or access to data in a server, but only a very reduced part shows a clever behavior behind the attack. Between hundred of thousand of connections only a few ones shows access to information to a service, then it use this informatión against other services and finally jumping to other hosts. A bit more frequent is the attempt to privilege elevation but the common behavior is use the base vulnerability in order to use his network and computational resources as soon as possible, in tasks like miner Litecoin\cite{litecoin}, increase the number of nodes for other scans of networks, for a future deny of service attack or use the compromised host like a anonymous proxy.
 
-When we rebuild the trace of the attack, the first advanced behavior that we find is the use of different hosts for scans and attacks and others for the intrusions and the explotations. The attack starts to scan subnets usually from countries without collaborations accord, in our case China. Then of the detection of the vulnerabilities, the exploitation is from Europe or United States. Obviously is not possible to be totally sure about the origin of the intrusion because we don't detect the use of proxies, but there isn't sense the use from countries like Chine for hidden its source in the intrusion stage but not in the scan stage. It has more relevance the inverse theory, the attack come from countries in a increase technology stage with many resource where the culture of security or his level still isn't high. And finally, the intrusion attempt is from the true geolocation of the attacker.
+When we rebuild the trace of the attack, the first advanced behavior that we find is the use of different hosts for scans and attacks and others for the intrusions and the explotations. The attack starts to scan subnets usually from countries without collaborations accord, in our case China. Then of the detection of the vulnerabilities, the exploitation is from Europe or United States. Obviously is not possible to be totally sure about the origin of the intrusion because we dodn't detect the use of proxies, but there isn't sense the use from countries like Chine for hidden its source in the intrusion stage but not in the scan stage. It has more relevance the inverse theory, the attack come from countries in a increase technology stage and many resources, where the culture of security isn't still high, finally the intrusion attempt is from a nearer geolocation of the attacker.
+
 
 \section{Strengths and Weaknesses of Honeypots}
 The strengths of honeypot are were:
@@ -129,16 +130,16 @@ The strengths of honeypot are were:
 The weakness of the honeypot are:
 \begin{itemize}
 \item There are many cyberthreats focused in the network layer, usually related with deny of services and spoofing. This information is very valuable because this kind of attack are a very important element not only in simple vector attacks, in multivector advanced and persistent attacks too. Honeypots only fetch information from the application layer so they lose essential information for reconstruction of complex attacks.
-\item Like others deception tools, honeypots must show itself like interesting target for a attacker and avoid them to be easily recognizable by fingerprint techniques. Default installations and configurations in low an medium interaction honeypot are easily detected by a human attacker or a intelligent threat like advanced malware.
-\item High interaction honeypots are dangerous in production environments because the monitored sensor is completely real and all his potential in order to attack its periphery. Usually they are deploying in isolated subnets with outgoing traffic strongly restricted in company of others honeypots, that configuration is called honeynet.
-\item When attacker has knowledge of the infrastructure, honeypots are easily dodged so must be deployed together with politics of use like change its subnets or IP every so often.
-\item There are many cyberthreats focused in the network layer, usually related with deny of services and spoofing. This information is very valuable because this kind of attack are a very important element not only in simple vector attacks, in multivector advanced and persistent attacks too. Honeypots only fetch information from the application layer so they lose essential information for reconstruction of complex attack.
-\item Like others deception tools, honeypots must show itself like interesting target for a attacker and avoid them to be easily recognizable by fingerprint techniques. Default installations and configurations in low an medium interaction honeypot are easily detected by a human attacker or a intelligent threat like advanced malware. %REFERENCIA AL ARTICULO DE PABLO GONZALES
-\item High interaction honeypot are dangerous in production's environments.
-\item When attacker has knowledge of the infrastructure 
+\item The use of passive sensors in a security system must be planned with some extra considerations respect the use of active methods of detection. Those considerations cover strategies of deception and hiding of the sensors and politics of migrations in the infrastructure for avoiding it's location.
+\begin{itemize}
+	\item Like others deception tools, honeypots must show itself like interesting target for a attacker and avoid them to be easily recognizable by fingerprint techniques. Default installations and configurations in low an medium interaction honeypot are easily detected by a human attacker or a intelligent threat like advanced malware.
+	\item When attacker has knowledge of the infrastructure, honeypots are easily dodged so must be deployed together with politics of use like change its subnets or IP every so often.
+	\item High interaction honeypots are dangerous in production environments because the monitored sensor is completely real and all his potential in order to attack its periphery. Usually they are deploying in isolated subnets with outgoing traffic strongly restricted in company of others honeypots, that configuration is called honeynet.
+\end{itemize}
 \end{itemize}
 
-\section{Honeypots, Elements in Hybrid Machine Learning S.I.E.M}
+
+\section{Improving Honeypots, Hybrid Machine Learning S.I.E.M}
 VECTORES HONYPOT VS CONJUTOS DE DATOS DEL LEARNING MACHINE GROUP
 FALTA CHICA, CAPA DE RED, TCPDUMP O IDS PILLANDO DATA
 
