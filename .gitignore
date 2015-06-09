@@ -1,3 +1,13 @@
+<<<<<<< HEAD
+=======
+*.pdf
+*.aux
+*.glo
+*.idx
+*.log
+*.toc
+*.ist
+>>>>>>> 96eb19a42363623adca23e0c31354a4d61ae6017
 *.acn
 *.acr
 *.alg
