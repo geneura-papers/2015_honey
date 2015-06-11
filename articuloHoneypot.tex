@@ -35,12 +35,21 @@ Postfach 10 52 80,\\
 It should be a balance between security concerns and the right to privacy in the use of IT infrastructures. Scientist networks have a high risk of attack as a source of valuable information and resources because they were designed with an open and decentralized philosophy, in favour of the transmission of knowledge when security wasn't a critical section\cite{iris-proyecto}.
 %¿Sólo las universidades? ¿Por qué las universidades? - JJ
 %Porque en la concepción de sus redes se fomentó más el principio de facilitar el acceso a la información frente a su protección - JL
+%FERGU: Scientist networks->Scientific networks. Por otro lado empieza una frase categórica y de repente salto a lo de las redes. Pondría algo más literario, por ejemplo "When dealing with security concerns in the use of IT infraestructures a good balance between security concerns and the right to privacy should be mantained. This is very important in scientific networks, because they were created as... and they have..."
+%No uses contracciones en un paper "wasn't"->"was not"
+%Tampoco referencias en los abstracts, quita el iris-proyecto. Las leyes de los papers.
+%Bueno, y aunque no está mal del todo, en papers en inglés deberías citar papers en inglés. Busca una referencia equivalente a la que usas, pero en inglés, que queda más fino.
 Private and scientific information have a enormous value for an attacker but the end user is worried about his privacy too. %Par de
              %fallos gordos de inglés. Por favor,
              %tened cuidado- JJ
+             %FERGU: esto es repetir lo de arriba. Lo quitaría o lo pondría  más literario :) como antes : "Although private and sc. information have a great value for attackers, the end user privacy is an important ...blablabla"
 For this reason passive detection methods in cybersecurity like honeypots are the cornerstone in its defence plan. We expose the practical case of the University of Granada in the application of honeypots for the detection and study of intrusions which avoid intrusive techniques like the direct analysis of the traffic through networking devices. Also we expose the difficulties founded in the information's analysis gathered. Finally we propose the application of machine learning to overcome them in future works.
  % ¿Y cuál es el objetivo? ¿Caso de éxito? ¿Caso de fracaso? ¿Hay algo original en la implementación de los honeypots? - JJ
 %El objetivo es mostrar que son como medios de detección muy efectivos sin necesidad de ser intrusivos en el trafico de red, pero que requieren de machine learning para solventar algunas deficiencias en cuanto a la deteccion de amenazas avanzadas se refiere. Exito https://www.honeynet.org/about, https://es.scribd.com/doc/174841947/Memoria, y "llamare" a los argentinos a ver si tienen algo publicado de como les va con su sistema - JL
+
+%FERGU: La primera frase "its defence plan". El plan de defensa de quien? Ponerlo más claro: Ejemplo: A good strategy to achieve this balance between security and privacy is the use of honeypots, as the can be the cornerstone of the defence plan of research agencies. In this paper, we present... Also, we expose (para no repetir expose)
+%like -> such as (esto me pasaba a mí también xD)
+%Tampoco se suele poner el uso del future work en los abstract (si usas esos métodos de ML en el paper quita lo de future works). Deja claro en el abstract cual es el objetivo de este trabajo
 \end{abstract}
 
 
@@ -51,8 +60,10 @@ From the earliest days, % ¿de qué? -JJ
                      % de continuidad... algo tendrá que haber en
                      % medio - JJ
 %Citar informes Norton y kaspersky anuales. - JL
+%FERGU: With the upswing of Internet, the number of attacks on networks have been increased significantly.
 the number of attacks increases continuously\cite{esset-tendencias}\cite{cni-ccn-tendencias-2014}. Scientist networks are a special and interesting case, % cita - JJ
 %Corregido
+%FERGU: para usar dos citas seguidas pon mejor \cite{esset-tendencias,cni-ccn-tendencias-2014}
 in one hand there is a strong demand of security in the network and the services which are listening. On the other hand, the end users demand privacy in his network traffic. In this scene the honeypots have an important role in the detection and protection against cyber attacks.
 % ¿Por qué la universidad? ¿Qué le hace especial? Si tienes una
 % universidad y quieres aplicarlo, ¿qué tienes que hacer? - JJ
@@ -67,42 +78,75 @@ in one hand there is a strong demand of security in the network and the services
 The cyberspace is a virtual space that wraps all types of digital
 %Agh, ciberespacio... ¿todo esto para qué ? - JJ
 %Porque es un termino muy sobreexplotado por estar de moda por militares, inteligencia y empresas, cada cual se permite el definirlo a su gusto al intoducirlo. 
+%FERGU: estoy con JJ, el concepto cyberespacio fuera de los 90 ya no mola tanto xDDD Tampoco mola mucho esta sección (y aparte, como dice JJ no puede haber subsecciones en la introducción de un paper)
 communication  infrastructures and the entities that use them. The hostile actions from these entities against the security and safety of the information and others entities are ciberthreats. Internet is the most popular inhabitant of this space and for years we have seen how
 %agh, internet como habitante del ciberespacio... qué poco me gustan
 %los clichés - JJ
 %No te falta razón es un cliché...
-the number and complexity of attacks against information and resources has increased. This increase is motivated by for economic, politic or military interests or by the same entities interested in exercise a bigger control over communication freedom in the cyberspace\cite{cni-ccn-tendencias-2014}\cite{cni-ccn-tendencias-2015}.
+the number and complexity of attacks against information and resources has increased. This increase is motivated by  economic, politic or military interests or by the same entities interested in exercise a bigger control over communication freedom in the cyberspace\cite{cni-ccn-tendencias-2014}\cite{cni-ccn-tendencias-2015}.
 % Citas,
 % citas y más citas - JJ
 % corregido - JL
 \subsection{Scientist Networks}
 \label{sect:Scientist Networks}
+%FERGU: fuera subsecciones
 In contrast to the corporate networks which usually have grown from
 the inside to outside % inside to outside what? - JJ
 and which have most hosts behind the demilitarized
 zone (DMZ), %citaaaaaa!!!- JJ
-the scientist networks were born with a open philosofy without focusing on security but on technical requirements due to the limited number of public IPs, were expanding private services to the intranet.\cite{iris-proyecto}
+the scientist networks were born with a open philosophy without focusing on security but on technical requirements due to the limited number of public IPs, were expanding private services to the intranet \cite{iris-proyecto}.
 
 The information related to research, patents, computer and human resources is a juicy target for hostile agents. Also, the big size of the DMZ %citaaaaa! - JJ
  makes it prone to a massive attack and increases the possibility of finding a security breach or hidden advance vectors of attack.
+%FERGU: este parrafo si está guay escrito
 
 \subsection{Privacy and Passive Sensors}
 \label{sect:Privacy and Passive Sensors}
 A honeypot is a trap that exposes itself, while is scanned, probed or compromised by a hostile entity, the trap collect information about the malicious activity. We differentiate between hierarchy and interaction in our taxonomy. The hierarchy is the complexity goes from a simple service like SSH, through a network, to a cloud. The interaction is the degree of fidelity in the response of the trap and goes from low to high.\\
-
+%FERGU: para enlazarlo con lo anterior puedes empezar con "To address all this issues, the honeypots have been used as method to... "  y con citas.
+%Mencionas a la taxonomia sin presentarla. Pon "In this paper we propose a taxonomy to categorize lo que sea".
+%"The hierarchy is the complexity goes from" No sé qué quiere decir esto, reescribelo mejor.
 TABLE HERE.
 
-There isn't a ideal configuration of features because is the nature of the threats and the infrastructure which we want to protect, the key for a correct selection of them. In a software development environment, high interactions is used for test a new product with {\it fuzzers} or another type of pentesting\footnote{Penetration Testing.} tool in order to discover potential vulnerabilities. On the other hand, low interaction honeypots are used like intrusion detection systems, warning about activity of scans or jumping attempts from compromised internal hosts. Both share a common point: they are not intrusive with the network traffic.
+There isn't a ideal configuration of features because 
+%FERGU: No usar contracciones: isn't is not. a ideal-> an ideal.
+is the nature of the threats and the infrastructure which we want to protect, the key for a correct selection of them.
+%FERGU: mejor reescribirlo como "There is not an ideal configuration of correct features for LOQUESEA, as there exist a huge effect on the nature of the treats and the infrastructure to LOQUESEA."
+ In a software development environment, high interactions is used for 
+%FERGU: is used->are used.
+ test a new product with {\it fuzzers} or another type of pentesting\footnote{Penetration Testing.}
+ %FERGU: Cita describiendo fuzzers. Mejor poner "or another type of Penetration Testing (also called {\it pentesting}) tool \cite{algo}". Pon citas a todos los conceptos que uses
+  tool in order to discover potential vulnerabilities. On the other hand, low interaction honeypots are used like intrusion detection systems, warning about activity of scans or jumping attempts from compromised internal hosts. Both share a common point: they are not intrusive with the network traffic.
 
+%FERGU: Aqui irá el clásico párrafo de fin de introducción: En este paper presentamos tal. La sección \ref{sec:soa} describe el estado del arte en TAL. A continuación, en la sección \ref{laquesea} describimos tal ... Finalmente, se presentan las conclusiones y trabajo futuro.
 \section{Deployment of a Security System Based in Honeypots}
 The architecture of the system is divided in two fronts: detection and management of the ciberthreats. The detection front usually are based on honeypots, one the most valuable tools at hand for this purpose.\\
-
-Sensors were deployed in different production subnets and each content honeypot software. Specifically Dionaea\cite{dionaea} and Kippo\cite{kippo} which are low and medium interaction honeypot respectively. Each sensor has local data bases for save the information attacks efficiently in space while is waiting for its saved in the collector in order to keep the information by duplicate and not to increase the network traffic in case of massive scans or attacks. Obviously, in the time space between information dumps each sensor sends by telegram incidents defined by the security operator like critical. The collector is a corporate database that feeds the incidents management system and is the core of all information analysis.
+%FERGU: no uses los \\ si no son necesarios, LaTeX se encarga de ponerlo bonico todo. También empieza la sección diciendo "Teniendo en cuenta lo que hemos expuesto anteriormente en el estado del arte, existen una serie de cosas que nosotros aprovechamos, el tal y el tal. En esta sección describimos..." Todas las secciones deben presentarse (esto es muy importante para el estilo del artículo).
+Sensors were deployed in different production subnets and each content honeypot software. Specifically Dionaea\cite{dionaea} and Kippo\cite{kippo} which are low and medium interaction honeypot respectively. 
+%FERGU: decir que es media y baja interacción (y citar a donde se describa). Di también: hemos usado baja y media interacción porque nos permite hacer tal...
+Each sensor has local data bases for save the information
+%FERGU: for save->to save. TRUCAZO: memoriza TO DO y FOR DOING. To <infinitivo> y For <gerundio>
+ attacks efficiently in space 
+%FERGU: in space?
+ while is waiting 
+%FERGU: while it is waiting (repite los pronombres si están muy lejos)
+ for its saved 
+%FERGU: its savings? que son sus "saved"?
+ in the collector in order to keep the information by duplicate and not to increase the network traffic in case of massive scans or attacks. Obviously, in the time space 
+%FERGU: quita el obviously, los lectores a lo mejor no lo tienen tan obvio (yo no lo sabía xD)
+ between information dumps each sensor sends by telegram incidents
+%FERGU: by telegrams? Muy del siglo 19, no? xDDD Explica que es un telegrama (supongo que algo de seguridad) o pon "messages" mejor
+  defined by the security operator like critical. The collector is a corporate database that feeds the incidents management system 
+  and is 
+%FERGU: and it is (lo que te he dicho de los pronombres en inglés)
+  the core of all information analysis.
 
 PONER GRAFICO
 
 \section{Data analyse}
+%FERGU: Data analysis
 For three years each sensor collected information of more of half million of connections. The information's analysis shows the next points:
+%FERGU: no usar contracciones ('s). Pon mejor: The analysis of this high amount of information has provided the next facts/conclusions/sinonimo:
 \begin{itemize}
 \item External attacks are more frequent than internal attacks.
 \item In one hand the most frequent type of external attacks was weak credentials disclosure. On the other hand the most frequent type of internal attacks was malware propagation.
