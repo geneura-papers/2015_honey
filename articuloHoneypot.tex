@@ -8,10 +8,11 @@
 
 \mainmatter
 
-\title{Cybersecurity in TIC-Scientist Network Infrastructures by
+\title{Cybersecurity in IT-Scientist Network Infrastructures by
   Honeypots: Catching Cyber Threat Passively}
 % No deberías forzar saltos de página, Latex es muy listo para estas cosas - jj
 % Corregido.
+% El título no se entiende bien. Voy a por un issue. - JJ
 \titlerunning{Cybersecurity in IT-Scientist Network Infrastructures by Honeypots}
 % TIC en inglés es IT - JJ
 % Corregido.
@@ -25,16 +26,27 @@ Postfach 10 52 80,\\
 69042 Heidelberg, Germany\\
 \email{jlmacal@correo.ugr.es}\\
 \email{\{pcv, gustavo\}@ugr.es}\\
-\email{jjmerelo@gmail.com}\\
+\email{jmerelo@ugr.es}\\
 \texttt{http://www.springer.de/comp/lncs/index.html}
 }
 
 \maketitle
 
 \begin{abstract}
-It should be a balance between security concerns and the right to privacy in the use of IT infrastructures. Scientist networks have a high risk of attack as a source of valuable information and resources because they were designed with an open and decentralized philosophy, in favour of the transmission of knowledge when security wasn't a critical section\cite{iris-proyecto}.
+It should be a balance between security concerns and the right to
+privacy in the use of IT infrastructures. Scientist networks have a
+% What should be a balance? Wouldn't that be "There should be a
+% balance" or "IT infrastructures in universities and other research
+% centers should strike a balance between... - JJ"
+high risk of attack as a source of valuable information and resources
+because they were designed with an open and decentralized philosophy,
+in favour of the transmission of knowledge when security wasn't a
+critical section\cite{iris-proyecto}.  
+%No se ponen citas en el abstract - JJ
 %¿Sólo las universidades? ¿Por qué las universidades? - JJ
-%Porque en la concepción de sus redes se fomentó más el principio de facilitar el acceso a la información frente a su protección - JL
+%Porque en la concepción de sus redes se fomentó más el principio de
+%facilitar el acceso a la información frente a su protección - JL
+% Deberías hablar de las universidades en el título. NO IT-scientist - JJ
 %FERGU: Scientist networks->Scientific networks. Por otro lado empieza una frase categórica y de repente salto a lo de las redes. Pondría algo más literario, por ejemplo "When dealing with security concerns in the use of IT infraestructures a good balance between security concerns and the right to privacy should be mantained. This is very important in scientific networks, because they were created as... and they have..."
 %No uses contracciones en un paper "wasn't"->"was not"
 %Tampoco referencias en los abstracts, quita el iris-proyecto. Las leyes de los papers.
@@ -43,9 +55,25 @@ Private and scientific information have a enormous value for an attacker but the
              %fallos gordos de inglés. Por favor,
              %tened cuidado- JJ
              %FERGU: esto es repetir lo de arriba. Lo quitaría o lo pondría  más literario :) como antes : "Although private and sc. information have a great value for attackers, the end user privacy is an important ...blablabla"
-For this reason passive detection methods in cybersecurity like honeypots are the cornerstone in its defence plan. We expose the practical case of the University of Granada in the application of honeypots for the detection and study of intrusions which avoid intrusive techniques like the direct analysis of the traffic through networking devices. Also we expose the difficulties founded in the information's analysis gathered. Finally we propose the application of machine learning to overcome them in future works.
- % ¿Y cuál es el objetivo? ¿Caso de éxito? ¿Caso de fracaso? ¿Hay algo original en la implementación de los honeypots? - JJ
-%El objetivo es mostrar que son como medios de detección muy efectivos sin necesidad de ser intrusivos en el trafico de red, pero que requieren de machine learning para solventar algunas deficiencias en cuanto a la deteccion de amenazas avanzadas se refiere. Exito https://www.honeynet.org/about, https://es.scribd.com/doc/174841947/Memoria, y "llamare" a los argentinos a ver si tienen algo publicado de como les va con su sistema - JL
+For this reason passive detection methods in cybersecurity like
+honeypots are the cornerstone in its defence plan. We expose the
+practical case of the University of Granada in the application of
+honeypots for the detection and study of intrusions which avoid
+intrusive techniques like the direct analysis of the traffic through
+networking devices. Also we expose the difficulties found in the
+information's analysis gathered. Finally we propose the application of
+machine learning to overcome them in future works. 
+ % ¿Y cuál es el objetivo? ¿Caso de éxito? ¿Caso de fracaso? ¿Hay algo
+ % original en la implementación de los honeypots? - JJ 
+%El objetivo es mostrar que son como medios de detección muy efectivos
+%sin necesidad de ser intrusivos en el trafico de red, pero que
+%requieren de machine learning para solventar algunas deficiencias en
+%cuanto a la deteccion de amenazas avanzadas se refiere. Exito
+%https://www.honeynet.org/about,
+%https://es.scribd.com/doc/174841947/Memoria, y "llamare" a los
+%argentinos a ver si tienen algo publicado de como les va con su
+%sistema - JL
+% Future work no va en el abstract. SE cuenta qué se va a hacer - JJ
 
 %FERGU: La primera frase "its defence plan". El plan de defensa de quien? Ponerlo más claro: Ejemplo: A good strategy to achieve this balance between security and privacy is the use of honeypots, as the can be the cornerstone of the defence plan of research agencies. In this paper, we present... Also, we expose (para no repetir expose)
 %like -> such as (esto me pasaba a mí también xD)
@@ -188,6 +216,7 @@ FALTA CHICA, CAPA DE RED, TCPDUMP O IDS PILLANDO DATA
 
 \section{Conclusions and Future Works}
 HAY QUE METER MACHINE LEARNING Y MINERIA DE DATOS DE LA BUENA A ESTOS DISPOSITIVOS.
+
 
 \begin{thebibliography}{5}
 \bibitem{esset-tendencias}
