@@ -14,7 +14,7 @@
 	\titlerunning{Cybersecurity in IT-Scientific Network Infrastructures by Honeypots}
 	
 	\author{Juan Luis Martin Acal \and Pedro A. Castillo Valdivieso
-		\and Gustavo Romero López \and Juan Julián Merelo Guervós}
+		\and Gustavo Romero López \and Juan Julián Merelo Guervós \and Pablo García Sánchez }
 	
 	\authorrunning{Juan Luis Martin Acal}
 	
@@ -22,8 +22,7 @@
 		Postfach 10 52 80,\\
 		69042 Heidelberg, Germany\\
 		\email{jlmacal@correo.ugr.es}\\
-		\email{\{pcv, gustavo\}@ugr.es}\\
-		\email{jmerelo@ugr.es}\\
+		\email{\{pcv, gustavo, jmerelo, pablogarcia\}@ugr.es}\\
 		\texttt{http://www.springer.de/comp/lncs/index.html}
 	}
 	
@@ -58,27 +57,31 @@ There is not an ideal configuration of correct features of them, as there exist 
 	\item The detection front is based on honeypots of medium and low interaction with stand-alone distribution appearance and server role.
 \end{itemize}
 
-The sensors were deployed in different production subnets and each one contents honeypot software. Specifically Dionaea\cite{dionaea} and Kippo\cite{kippo} which are low and medium interaction honeypot respectively. Each sensor has local data bases to save the information about attacks efficiently, while is waiting to dump the data in the collector. This is  in order to keep the information by duplicate and not to increase the network traffic in case of massive scans or attacks. In the time-lapse for dumped from each sensor to the centralized database, the sensors send incidents by mean of the Linux client of the messaging software "Telegram" to the operator, in time-lapses lower than 5 minutes. The collector is a corporate database that feeds the incidents management system and the source of the data analysed.
+
+The sensors were deployed in different production subnets and each one included honeypot software. Specifically Dionaea\cite{dionaea} and Kippo\cite{kippo} which are low and medium interaction honeypot respectively. Each sensor has local data bases with the purpose of saving efficiently the information about attacks, while is waiting to dump the data in the collector. This is  in order to keep the information by duplicate and not to increase the network traffic in case of massive scans or attacks. In the time-lapse for dumped from each sensor to the centralized database, the sensors send incidents by mean of the Linux client of the messaging software ``Telegram'' to the operator, in time-lapses lower than 5 minutes. The collector is a corporate database that feeds the incidents management system and the source of the data analysed.
 	
 %PONER GRAFICO
 	
 \section{Data analysis}
 \label{sec:analysis}
-For three years each sensor collected information of more of half million of connections. he analysis of this high amount of information has provided the next facts:
+In this section we expose the analysis of the information gathered and the behavior of detected cyber threats. We explain how this information shows the stages of the complex threats involved in multivector attacks and we discover the finality behind of advanced threats.
+
+For three years each sensor collected information of more of half million of connections. The analysis of this high amount of information has provided the next facts:
 \begin{itemize}
 	\item External attacks are more frequent than internal attacks.
 	\item In one hand the most frequent type of external attacks was weak credentials disclosure. On the other hand the most frequent type of internal attacks was malware propagation.
-	\item Countries outside OTAN are the most active in the process of scanning and searching for vulnerabilities but curiously most of the intrusions come from OTAN member or member candidate countries. It is important to note that this data is dependent on the geolocation of where they are taken.
+	\item Countries outside NATO are the most active in the process of scanning and searching for vulnerabilities but curiously most of the intrusions come from NATO member or member candidate countries. It is important to note that this data is dependent on the geolocation of where they are taken.
+	%la primeroa fase de los ataques son automatizadas.
+	%la explotacion es automatizada con supervision humana o humana
 \end{itemize}
 	
-The increment of attacks in this decade is a proven fact and the data cached shows us how externals attacks are the most frequent kind of attacks. This matches with studies of big security IT enterprises\cite{verizon-2015}. When we studied in detail the information, we saw many attempts of connection, some from scans to the network infrastructure and others looking for exploit vulnerabilities or services without strong credentials. About the latter ones is necessary to emphasize those that showed a more advanced level in the process of intrusion because were linked to Advance persistent threats (APT). One of the greatest dangers for IT infrastructures of governments, public administrations and companies are advance persistence threats. A cyberthreat is persistent if it is continuous in time and establishes monitoring and control mechanisms with hostile agent, and it is advanced because uses mechanisms in order to hide its activity in the system. Usually APT are related with cyberspying and elite groups of cybercrime and they are attacks directed against a specific infrastructure. For this reason it is a priority to detect and study them.
-	
-Malware propagation usually belong to advanced and persistent threats and come accompanied by a multivector attack. For example, the malware infect through the ms08\_67 and immediately attempting connect with a command ad control server (C\&C). In this point, start to protect itself through mutations of his own code, in order to hide from antivirus software, communicate through common protocols like HTTP to avoid rules for outgoing traffic firewall, it use encrypted communication by SSL to prevent the interception of information or generate thousands names of random domain to prevent the take down of the botnet.
-	
-But not always is easy follow the clue for rebuilding of a multivector attack. Usually the exploitation of SSH or MySQL weak credentials is the first step to gain the control or access to data in a server, but only a very reduced part shows a clever behavior behind the attack. Between hundred of thousand of connections only a few ones shows access to information to a service, then it use this information against other services and finally jumping to other hosts. A bit more frequent is the attempt to privilege elevation but the common behavior is use the base vulnerability in order to use his network and computational resources as soon as possible, in tasks like miner Litecoin\cite{litecoin}, increase the number of nodes for other scans of networks, for a future deny of service attack or use the compromised host like a anonymous proxy.
-	
-When we rebuild the trace of the attack, the first advanced behavior that we find is the use of different hosts for scans and attacks and others for the intrusions and the explotations. The attack starts to scan subnets usually from countries without collaborations accord, in our case China. Then of the detection of the vulnerabilities, the exploitation is from Europe or United States. Obviously is not possible to be totally sure about the origin of the intrusion because we dodn't detect the use of proxies, but there isn't sense the use from countries like Chine for hidden its source in the intrusion stage but not in the scan stage. It has more relevance the inverse theory, the attack come from countries in a increase technology stage and many resources, where the culture of security isn't still high, finally the intrusion attempt is from a nearer geolocation of the attacker.
-	
+The collected data shows us how external attacks are the most frequent source of attacks. This matches with studies of big security IT enterprises\cite{verizon-2015}. When we studied in detail the information, we saw many connections, some of them from scans to the network infrastructure and others looking for exploiting vulnerabilities or services without strong credentials. About the latter ones is necessary to emphasize those that showed a more advanced level in the process of intrusion because were linked to Advance persistent threats (APT). One of the greatest dangers for IT infrastructures of governments, public administrations and companies are advanced persistence threats. A cyber threat is persistent if it is continuous in time and establishes monitoring and control mechanisms with a hostile agent. It is advanced if uses mechanisms in order to hide its activity in the system. Usually APT are related with cyberspying and elite groups of cybercrime and they are attacks directed against a specific infrastructure. For this reason, it is a priority to detect and study them.
+
+The attempts of malware propagation usually belong to advanced and persistent threats and come accompanied by a multivector attack. A attack is multivector whether it exploits multiple vulnerabilities in order to reach its goals. When a Windows host belonging to the infrastructure was compromised by a USB drive, after had communicated its incorporation to the command and control server of the netbot, it started to scan its neighbors within the subnet. Then, it established connections with the sensors that  emulated the ms08-067\cite{ms08067} vulnerability. After this, it commanded to the honeypot software download the binary of trojan from a external web servers. This strategy avoided that firewalls blocked external infections to internal hosts through Server Message Block protocol (SMB) services. Finally, the infected host, not honeypots in our case, would tried to spread the infection, scanning and attacking others subnets, process that is called {\it jumping}.
+
+It is quite difficult follow the clue for rebuilding of multivector attacks. Usually the exploitation of SSH or MySQL weak credentials was the first step to gain the control or access to data in the emulated server. But only a very reduced part shows a clever behavior behind the attack. Between hundred of thousand of connections only a few ones shows access to the fake information such as fake passwords. Then, intelligent attacker tried to use this information against other services with the purpose of  ``jumping'' inside them. A bit more frequent is the attempt to privilege elevation. But the common behavior is to use the basic vulnerability in order to use his network and computational resources as soon as possible. This resources were collected for using in tasks like miner Litecoin\cite{litecoin}, increase the number of nodes for other network scans, for a future deny of service (DoS) attack or for using the compromised host like a anonymous proxy.
+
+When we rebuild the trace of the attack, the first advanced behavior that we find is the use of different hosts for scanning the infrastructure and change to others hosts for the exploitation. The attack starts to scan subnets usually from countries without collaborations accord, in our case China but finally the exploitation is from Europe or United States.%los root kits, los usuarios ocultos,
 	
 \section{Strengths and Weaknesses of Honeypots}
 \label{sec:Strengths&Weaknesse}
@@ -86,7 +89,7 @@ The strengths of honeypot are were:
 \begin{itemize}
 	\item It was not intrusive with network traffic, remained the privacy of infrastructure users. This is a important point because any try of to catch indirect traffic of network would been seen as a threat by other users and a infringement of the use conditions of the network and legality.
 	\item The computational and economic resources needed for passive detection are lower because we have only the traffic belong to a potential cyber threat. This an alternative approach to other solutions more expensive like intrusion detection systems based in hardware.
-	\item Cyberthreats like advanced malware uses ciphered communications in order to dodge detection systems in the network layer, the only way to catch information its from inside of the compromised node. This is essential if we want analyse how persistence cibertheraths monitors the compromised host and what informations sent outside to its C\&C network.
+	\item Cyber threats such as advanced malware uses ciphered communications in order to dodge detection systems in the network layer, the only way to catch information its from inside of the compromised node. This is essential if we want analyse how persistence cyber threaths monitor the compromised host and what informations sent outside to its C\&C network.
 \end{itemize}
 	
 The weakness of the honeypot are:
@@ -100,7 +103,7 @@ The weakness of the honeypot are:
 	\end{itemize}
 \end{itemize}
 	
-\section{Improving Honeypots, Hybrid Machine Learning S.I.E.M}
+\section{Experiments with S.O.M}
 \label{sec:Improve}
 VECTORES HONYPOT VS CONJUTOS DE DATOS DEL LEARNING MACHINE GROUP
 FALTA CHICHA, CAPA DE RED, TCPDUMP O IDS PILLANDO DATA
