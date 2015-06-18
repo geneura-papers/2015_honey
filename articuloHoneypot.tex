@@ -1,6 +1,8 @@
 \documentclass[a4paper]{llncs}
 \usepackage[utf8]{inputenc}
 \usepackage{times,verbatim} % Please do not comment this
+\usepackage{graphicx}
+\graphicspath{ {images/} }
 
 \begin{document}
 	
@@ -77,7 +79,22 @@ For three years each sensor collected information of more of half million of con
 	
 The collected data shows us how external attacks are the most frequent source of attacks. This matches with studies of big security IT enterprises\cite{verizon-2015}. When we studied in detail the information, we saw many connections, some of them from scans to the network infrastructure and others looking for exploiting vulnerabilities or services without strong credentials. About the latter ones is necessary to emphasize those that showed a more advanced level in the process of intrusion because were linked to Advance persistent threats (APT). One of the greatest dangers for IT infrastructures of governments, public administrations and companies are advanced persistence threats. A cyber threat is persistent if it is continuous in time and establishes monitoring and control mechanisms with a hostile agent. It is advanced if uses mechanisms in order to hide its activity in the system. Usually APT are related with cyberspying and elite groups of cybercrime and they are attacks directed against a specific infrastructure. For this reason, it is a priority to detect and study them.
 
+\begin{figure}[h]
+	\includegraphics[width=0.5\textwidth]{dionaeaInternalExternal.png}
+	\label{fig:intvsextDionaea}
+	\includegraphics[width=0.5\textwidth]{kippoInternalExternal.png}
+	\label{fig:intvsextKippo}
+	\caption{On the left, the number of IP involved in external attacks versus internal attacks detected by Dionaea. On the right, the number of IP involved in external attacks versus internal attacks detected by Kippo.}
+\end{figure}
+
 The attempts of malware propagation usually belong to advanced and persistent threats and come accompanied by a multivector attack. A attack is multivector whether it exploits multiple vulnerabilities in order to reach its goals. When a Windows host belonging to the infrastructure was compromised by a USB drive, after had communicated its incorporation to the command and control server of the netbot, it started to scan its neighbors within the subnet. Then, it established connections with the sensors that  emulated the ms08-067\cite{ms08067} vulnerability. After this, it commanded to the honeypot software download the binary of trojan from a external web servers. This strategy avoided that firewalls blocked external infections to internal hosts through Server Message Block protocol (SMB) services. Finally, the infected host, not honeypots in our case, would tried to spread the infection, scanning and attacking others subnets, process that is called {\it jumping}.
+
+\begin{figure}[h]
+	\includegraphics[width=0.5\textwidth]{internalTypes.png}
+	\centering
+	\label{fig:internalTypes}
+	\caption{The malware was main source of internal attacks, and shows a advanced behavior involved in multivector attacks.}
+\end{figure}
 
 It is quite difficult follow the clue for rebuilding of multivector attacks. Usually the exploitation of SSH or MySQL weak credentials was the first step to gain the control or access to data in the emulated server. But only a very reduced part shows a clever behavior behind the attack. Between hundred of thousand of connections only a few ones shows access to the fake information such as fake passwords. Then, intelligent attacker tried to use this information against other services with the purpose of  ``jumping'' inside them. A bit more frequent is the attempt to privilege elevation. But the common behavior is to use the basic vulnerability in order to use his network and computational resources as soon as possible. This resources were collected for using in tasks like miner Litecoin\cite{litecoin}, increase the number of nodes for other network scans, for a future deny of service (DoS) attack or for using the compromised host like a anonymous proxy.
 
