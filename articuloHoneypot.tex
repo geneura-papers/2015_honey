@@ -122,9 +122,26 @@ The weakness of the honeypot are:
 	
 \section{Experiments with S.O.M}
 \label{sec:Improve}
-In this section, we expose an experiment with Self-Organizing Maps in order to classify information and we comment some interesting results.
+In this section, we expose an experiment with Self-Organizing Maps so as to classify information and we comment some interesting results.
 
-In order to classify the information of detected attacks, we apply the classification method that is described in \ cite {}, in two subsets of data. The first advantage is the simplification of the collected information that it derived from the dimensional reduction intrinsic to the method. The attacks are organized in clusters 2D.  This allows identify some very interesting characteristics. The first thing that drawing our attention is how the attacks to HTTP, Microsoft SQL Server (MSSQL) and Session Initiation Protocol (SIP) are concentrated in areas better defined. It is because the cyberthreat showed less variability in their dimensional components. This is explained by the nature of the connections of the attacks and the characteristics of the software used. A sweep scan to search for services in parallel with tools such as Nmap citarXXXXXXXXXXXXXXXx or malware with a very aggressive behavior, have a great variability in the component, source port. On the other hand when the connection comes from targeted attacks or advanced malware, the behavior showed is discrete so as to avoid intrusion detection systems, variability is lower. It is possible detect  isolated nodes that match with attack
+In order to classify the information of detected attacks, we apply the classification method that is described in \ cite {}, in two subsets of data. The first advantage is the simplification of the collected information that it derived from the dimensional reduction intrinsic to the method. The attacks are organized in clusters 2D.  This allows identify some interesting characteristics. The first thing that drawing our attention is how the attacks to HTTP, Microsoft SQL Server (MSSQL) and Session Initiation Protocol (SIP) are concentrated in areas better defined. It is because the cyberthreat showed less variability in their dimensional components. This is explained by the nature of the connections of the attacks and the characteristics of the software used. A sweep scan to search for services in parallel with tools such as Nmap\cite{nmap} or malware with a very aggressive behavior, have a great variability in the component, source port. On the other hand when the connection comes from targeted attacks or advanced malware, the behavior showed is discrete so as to avoid intrusion detection systems, variability is lower.
+
+\begin{figure}[h]
+	\includegraphics[width=0.5\textwidth]{subset1.png}
+	\label{fig:intvsextDionaea}
+	\includegraphics[width=0.5\textwidth]{subset2.png}
+	\label{fig:intvsextKippo}
+	\caption{On the left, the first subset of gathered attacks. On the right, the second subset of gathered attacks. Some services shows clusters more dispersed than other.}
+\end{figure}
+
+Finally, we injected information about fake advanced attack in the first subset and we built the union of the previous subsets in a third subset. The information from both honeypots is arranged around the second diagonal. In the lower right area a cluster with connection attempts to MySQL service number displayed readily invested port. Change the default port number is a common practice to hide services. Port scannings with reverse numbering or multiple of the orginal denotes an intelligent behavior. With S.O.M we get visual information that permit study it easily with the intention of look for  anomalies candidates to attacks with a intelligent behavior.
+
+\begin{figure}[h]
+	\includegraphics[width=0.5\textwidth]{subset3.png}
+	\centering
+	\label{fig:internalTypes}
+	\caption{Union between firs and second subset. The information is auto organized around the second diagonal and it was detected a fake attack to a hidden MySQL port such as a individual cluster.}
+\end{figure}
 
 \section{Conclusion and Future Works}
 \label{sec:conclusion&future}
