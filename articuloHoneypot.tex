@@ -72,20 +72,19 @@ For three years each sensor collected information of more of half million of con
 	\item External attacks are more frequent than internal attacks.
 	\item In one hand the most frequent type of external attacks was weak credentials disclosure. On the other hand the most frequent type of internal attacks was malware propagation.
 	\item Countries outside NATO are the most active in the process of scanning and searching for vulnerabilities but curiously most of the intrusions come from NATO member or member candidate countries. It is important to note that this data is dependent on the geolocation of where they are taken.
-	\item 
 	%la primeroa fase de los ataques son automatizadas.
 	%la explotacion es automatizada con supervision humana o humana
 \end{itemize}
-	
-The collected data shows us how external attacks are the most frequent source of attacks. This matches with studies of big security IT enterprises\cite{verizon-2015}. When we studied in detail the information, we saw many connections, some of them from scans to the network infrastructure and others looking for exploiting vulnerabilities or services without strong credentials. About the latter ones is necessary to emphasize those that showed a more advanced level in the process of intrusion because were linked to Advance persistent threats (APT). One of the greatest dangers for IT infrastructures of governments, public administrations and companies are advanced persistence threats. A cyber threat is persistent if it is continuous in time and establishes monitoring and control mechanisms with a hostile agent. It is advanced if uses mechanisms in order to hide its activity in the system. Usually APT are related with cyberspying and elite groups of cybercrime and they are attacks directed against a specific infrastructure. For this reason, it is a priority to detect and study them.
 
 \begin{figure}[h]
-	\includegraphics[width=0.5\textwidth]{dionaeaInternalExternal.png}
+	\centering{\includegraphics[width=5cm,height=6cm,keepaspectratio]{dionaeaInternalExternal.png}}
 	\label{fig:intvsextDionaea}
-	\includegraphics[width=0.5\textwidth]{kippoInternalExternal.png}
+	\centering{\includegraphics[width=5cm,height=6cm,keepaspectratio]{kippoInternalExternal.png}}
 	\label{fig:intvsextKippo}
 	\caption{On the left, the number of IP involved in external attacks versus internal attacks detected by Dionaea. On the right, the number of IP involved in external attacks versus internal attacks detected by Kippo.}
 \end{figure}
+
+The collected data shows us how external attacks are the most frequent source of attacks. This matches with studies of big security IT enterprises\cite{verizon-2015}. When we studied in detail the information, we saw many connections, some of them from scans to the network infrastructure and others looking for exploiting vulnerabilities or services without strong credentials. About the latter ones is necessary to emphasize those that showed a more advanced level in the process of intrusion because were linked to Advance persistent threats (APT). One of the greatest dangers for IT infrastructures of governments, public administrations and companies are advanced persistence threats. A cyber threat is persistent if it is continuous in time and establishes monitoring and control mechanisms with a hostile agent. It is advanced if uses mechanisms in order to hide its activity in the system. Usually APT are related with cyberspying and elite groups of cybercrime and they are attacks directed against a specific infrastructure. For this reason, it is a priority to detect and study them.
 
 The attempts of malware propagation usually belong to advanced and persistent threats and come accompanied by a multivector attack. A attack is multivector whether it exploits multiple vulnerabilities in order to reach its goals. When a Windows host belonging to the infrastructure was compromised by a USB drive, after had communicated its incorporation to the command and control server of the netbot, it started to scan its neighbors within the subnet. Then, it established connections with the sensors that  emulated the ms08-067\cite{ms08067} vulnerability. After this, it commanded to the honeypot software download the binary of trojan from a external web servers. This strategy avoided that firewalls blocked external infections to internal hosts through Server Message Block protocol (SMB) services. Finally, the infected host, not honeypots in our case, would tried to spread the infection, scanning and attacking others subnets, process that is called {\it jumping}.
 
@@ -127,9 +126,9 @@ In this section, we expose an experiment with Self-Organizing Maps so as to clas
 In order to classify the information of detected attacks, we apply the classification method that is described in \ cite {}, in two subsets of data. The first advantage is the simplification of the collected information that it derived from the dimensional reduction intrinsic to the method. The attacks are organized in clusters 2D.  This allows identify some interesting characteristics. The first thing that drawing our attention is how the attacks to HTTP, Microsoft SQL Server (MSSQL) and Session Initiation Protocol (SIP) are concentrated in areas better defined. It is because the cyberthreat showed less variability in their dimensional components. This is explained by the nature of the connections of the attacks and the characteristics of the software used. A sweep scan to search for services in parallel with tools such as Nmap\cite{nmap} or malware with a very aggressive behavior, have a great variability in the component, source port. On the other hand when the connection comes from targeted attacks or advanced malware, the behavior showed is discrete so as to avoid intrusion detection systems, variability is lower.
 
 \begin{figure}[h]
-	\includegraphics[width=0.5\textwidth]{subset1.png}
+	\centering{\includegraphics[width=4cm,height=5cm,keepaspectratio]{subset1.png}}
 	\label{fig:intvsextDionaea}
-	\includegraphics[width=0.5\textwidth]{subset2.png}
+	\centering{\includegraphics[width=4cm,height=5cm,keepaspectratio]{subset2.png}}
 	\label{fig:intvsextKippo}
 	\caption{On the left, the first subset of gathered attacks. On the right, the second subset of gathered attacks. Some services shows clusters more dispersed than other.}
 \end{figure}
@@ -137,8 +136,7 @@ In order to classify the information of detected attacks, we apply the classific
 Finally, we injected information about fake advanced attack in the first subset and we built the union of the previous subsets in a third subset. The information from both honeypots is arranged around the second diagonal. In the lower right area a cluster with connection attempts to MySQL service number displayed readily invested port. Change the default port number is a common practice to hide services. Port scannings with reverse numbering or multiple of the orginal denotes an intelligent behavior. With S.O.M we get visual information that permit study it easily with the intention of look for  anomalies candidates to attacks with a intelligent behavior.
 
 \begin{figure}[h]
-	\includegraphics[width=0.5\textwidth]{subset3.png}
-	\centering
+	\centering{\includegraphics[width=12cm,height=6cm,keepaspectratio]{subset3.png}}
 	\label{fig:internalTypes}
 	\caption{Union between firs and second subset. The information is auto organized around the second diagonal and it was detected a fake attack to a hidden MySQL port such as a individual cluster.}
 \end{figure}
