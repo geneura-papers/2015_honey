@@ -69,9 +69,9 @@ For three years each sensor collected information of more of half million of con
 \end{itemize}
 
 \begin{figure}[h]
-	\centering{\includegraphics[width=5cm,height=6cm,keepaspectratio]{dionaeaInternalExternal.png}}
+	\centering{\includegraphics[width=0.49\textwidth,keepaspectratio]{dionaeaInternalExternal.png}}
 	\label{fig:intvsextDionaea}
-	\centering{\includegraphics[width=5cm,height=6cm,keepaspectratio]{kippoInternalExternal.png}}
+	\centering{\includegraphics[width=0.49\textwidth,keepaspectratio]{kippoInternalExternal.png}}
 	\label{fig:intvsextKippo}
 	\caption{On the left, the number of IP involved in external attacks versus internal attacks detected by Dionaea. On the right, the number of IP involved in external attacks versus internal attacks detected by Kippo.}
 \end{figure}
@@ -118,9 +118,9 @@ In this section, we expose an experiment with Self-Organizing Maps so as to clas
 In order to classify the information of detected attacks, we apply the classification method that is described in \cite{panda-2009}, in two subsets of data. The first advantage is the simplification of the collected information that it derived from the dimensional reduction intrinsic to the method. The attacks are organized in clusters 2D.  This allows identify some interesting characteristics. The first thing that drawing our attention is how the attacks to HTTP, Microsoft SQL Server (MSSQL) and Session Initiation Protocol (SIP) are concentrated in areas better defined. It is because the cyberthreat showed less variability in their dimensional components. This is explained by the nature of the connections of the attacks and the characteristics of the software used. A sweep scan to search for services in parallel with tools such as Nmap\cite{nmap} or malware with a very aggressive behavior, have a great variability in the component, source port. On the other hand when the connection comes from targeted attacks or advanced malware, the behavior showed is discrete so as to avoid intrusion detection systems, variability is lower.
 
 \begin{figure}[h]
-	\centering{\includegraphics[width=4cm,height=5cm,keepaspectratio]{subset1.png}}
+	\centering{\includegraphics[height=0.333\textheight,keepaspectratio]{subset1.png}}
 	\label{fig:intvsextDionaea}
-	\centering{\includegraphics[width=4cm,height=5cm,keepaspectratio]{subset2.png}}
+	\centering{\includegraphics[height=0.333\textheight,keepaspectratio]{subset2.png}}
 	\label{fig:intvsextKippo}
 	\caption{On the left, the first subset of gathered attacks. On the right, the second subset of gathered attacks. Some services shows clusters more dispersed than other.}
 \end{figure}
