@@ -1,12 +1,3 @@
-#SELECT 1,local_port,remote_port,connection_protocol FROM connections WHERE connection_timestamp BETWEEN '1387129129.15' AND '1387301929.15' AND connection_protocol!='pcap' ORDER BY connection DESC
-
-#SELECT 1,local_port,remote_port,connection_protocol 
-#FROM connections 
-#WHERE connection_timestamp BETWEEN '1387129129.15' AND '1387301929.15' AND connection_protocol!='pcap' 
-#ORDER BY connection DESC
-
-#LIMIT 10
-
 3
 #n sensorId localPort remotePort
 1 	3306 	2553 	mysqld
