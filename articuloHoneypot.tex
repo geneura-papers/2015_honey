@@ -126,18 +126,18 @@ In order to classify the information of detected attacks, we apply the classific
 	\caption{On the left, the first subset of gathered attacks. On the right, the second subset of gathered attacks. Some services shows clusters more dispersed than other. Both  were taken on different dates and have some different types of attacks.}
 \end{figure}
 
-Finally, information about fake advanced attack was injected in the first subset and the union of the previous subsets in a third subset was built. The information from both honeypots is arranged around the second diagonal. In the lower right area a cluster with connection attempts to MySQL service number displayed readily inverted port. Changing the default port number is a common practice to hide services. Port scannings with reverse numbering or multiple of the original denotes an intelligent behavior. S.O.M allow to obtain visual information to study it easily looking for  anomalies, candidates to attacks, with a intelligent behavior.
+Finally, information about fake advanced attack was injected in the first subset and the union of the previous subsets in a third subset was built. The information from both honeypots is arranged around the second diagonal. In the lower right area a cluster with connection attempts to MySQL service number displayed readily inverted port. Changing the default port number is a common practice to hide services. Port scannings with reverse numbering or multiple of the original denotes an intelligent behavior. SOM allow to obtain visual information to study it easily looking for  anomalies, candidates to attacks, with a intelligent behavior.
 
 \begin{figure}[h]
 	\centering{\includegraphics[width=12cm,height=6cm,keepaspectratio]{subset3.png}}
 	\label{fig:internalTypes}
-	\caption{Union between firs and second subset. The information is auto organized around the second diagonal and it was detected a fake attack to a hidden MySQL port such as a individual cluster.}
+	\caption{Union between firs and second subset. The information is self-organized around the second diagonal and it was detected a fake attack to a hidden MySQL port such as a individual cluster.}
 \end{figure}
 
 \section{Conclusion and Future Works}
 \label{sec:conclusion&future}
-We have exposed how is possible a security system based in passive sensors. The range of detected attacks goes from elementary scans, to attempts of intrusions and malware injections. Although it is possible to identify and track manually APT, this is not efficient, and easily APT can pass unnoticed. Another problem is that the caught information with low interaction honeypots, it is restricted to the application layer. Classification methods initially discover information hidden by the large volume of data. 
-For this reason, it is proposed for future works the analysis of data from different sources in hybrid architectures, with different levels of interactions and the comparison. As well as the use of different machine learning methods, supervised or unsupervised, in order to improve the detection of cyber threats.
+We have exposed how it is possible to develop a security system based in passive sensors. The range of detected attacks goes from elementary scans, to attempts of intrusions and malware injections. Although it is possible to identify and track manually APT, this is not efficient, and easily APT can pass unnoticed. Another problem is that the caught information with low interaction honeypots, it is restricted to the application layer. Classification methods initially discover information hidden by the large volume of data. 
+For this reason, it is proposed for future works the analysis of data from different sources in hybrid architectures, with different levels of interactions and the comparison. The use of different machine learning methods, supervised or unsupervised, in order to improve the detection of cyber threats will be studied.
 
 \bibliographystyle{splncs03}
 \bibliography{articuloHoneypot}
