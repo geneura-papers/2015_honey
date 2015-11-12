@@ -52,7 +52,7 @@ body {
 
 .reveal h1 {
     font-family: Josefin Sans;
-    font-size: 3em; 
+    font-size: 2.5em; 
 }
 
 .reveal h2 {
@@ -291,4 +291,6 @@ body {
 .bkg {
     border-radius:15px;
     background: rgba(220, 220, 220, 0.7);
+    padding:25px;
+    margin:25px;
 }
