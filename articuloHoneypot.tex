@@ -28,26 +28,92 @@ infrastructure}
 
 \begin{abstract}
 When dealing with security concerns in the use of network infrastructures a good balance between security concerns and the right to privacy should be maintained. This is very important in scientific networks, because they were created with an open and decentralized philosophy, in favor of the transmission of knowledge, when security was not a essential topic.
-Although private and scientific information have an enormous value for an attacker, the user privacy for legal and ethical reasons must be respected. Thus, passive detection methods in cybersecurity such as honeypots are a good strategy to achieve this balance between security and privacy in the defense plan of a scientific network. In this paper we present the practical case of the University of Granada in the application of honeypots for the detection and study of intrusions, which avoid intrusive techniques such as the direct analysis of the traffic through networking devices.
+Although private and scientific information have an enormous value for
+an attacker, the user privacy for legal and ethical reasons must be
+respected. Thus, passive detection methods in cybersecurity such as
+honeypots are a good strategy to achieve this balance between security
+and privacy in the defense plan of a scientific network. In this paper
+we present the practical case of the University of Granada in the
+application of honeypots for the detection and study of intrusions,
+which avoid intrusive techniques such as the direct analysis of the
+traffic through networking devices. 
 \end{abstract}
 
 
 \section{Introduction}
-From the earliest days of computer networks, these have been experiencing continued growth in number of attacks \cite{esset-tendencias,cni-ccn-tendencias-2014,cni-ccn-tendencias-2015}. The complexity of these attacks against the information and resources in the networks has also increased. This escalation is motivated by economic, politic or military interests or by the same entities interested in exercise a bigger control over communication freedom in the Internet \cite{cni-ccn-tendencias-2015,cisco-2014}.
+From the earliest days of computer networks, these have been
+experiencing continued growth in number of attacks
+\cite{esset-tendencias,cni-ccn-tendencias-2014,cni-ccn-tendencias-2015}. The
+complexity of these attacks against the information and resources in
+the networks has also increased. This escalation is motivated by
+economic, politic or military interests or by the same entities
+interested in exercise a bigger control over communication freedom in
+the Internet \cite{cni-ccn-tendencias-2015,cisco-2014}. 
 
-Although private and scientific information have an enormous value for an attacker, the user privacy for legal and ethical reasons must be respected by the Chief Security Officer (CSO). Scientific networks are a special and interesting case; in one hand there is a strong demand of security in the network and the resources and services which are listening. On the other hand, the end users demand privacy in his network traffic covered by the law. But classic Scientific networks were not designed thinking in security concerns \cite{iris-proyecto}. In contrast to the corporate networks, which usually have grown from the intranet to the Internet, and which have the most of hosts behind the demilitarized zone (DMZ), the scientist networks were born with an open philosophy without focusing on security \cite{iris-proyecto}. Only technical requirements such as the limited number of public IP address forced it to expand private services to the intranet. The information related to research, patents, computer and human resources is a juicy target for hostile agents. Also, the big size of the DMZ makes it prone to a massive attack and increases the possibility of finding a security breach or hide advanced vectors of attack. In this scenario the passive sensors have an important role in the detection and protection against cyber-attacks.
+Although private and scientific information have an enormous value for
+an attacker, the user privacy for legal and ethical reasons must be
+respected by the Chief Security Officer (CSO). Scientific networks are
+a special and interesting case; in one hand there is a strong demand
+of security in the network and the resources and services which are
+listening. On the other hand, the end users demand privacy in his
+network traffic covered by the law. But classic Scientific networks
+were not designed thinking in security concerns
+\cite{iris-proyecto}. In contrast to the corporate networks, which
+usually have grown from the intranet to the Internet, and which have
+the most of hosts behind the demilitarized zone (DMZ), the scientist
+networks were born with an open philosophy without focusing on
+security \cite{iris-proyecto}. Only technical requirements such as the
+limited number of public IP address forced it to expand private
+services to the intranet. The information related to research,
+patents, computer and human resources is a juicy target for hostile
+agents. Also, the big size of the DMZ makes it prone to a massive
+attack and increases the possibility of finding a security breach or
+hide advanced vectors of attack. In this scenario the passive sensors
+have an important role in the detection and protection against
+cyber-attacks. 
 
-In this paper is presented the deployed of a security system in the University of Granada based in passive sensors in order to avoid intrusive techniques such as the direct analysis of the traffic through networking devices, and also it is exposed some test with the finality of complementing the manual tracking of incidents.
+In this paper the deployment of a security system is presented; this
+system was used in the
+University of Granada and is based in passive sensors in order to avoid
+intrusive techniques such as the direct analysis of the traffic
+through networking devices, and also it is exposed some test with the
+finality of complementing the manual tracking of incidents. 
 
-The rest of the paper is organized as follows: Section \ref{sec:deployment} the characteristic of the passive sensor and the infrastructure used are expected. In the section \ref{sec:analysis}, the analysis of the registered data is presented. A critical analysis of the strong and weak points for the infrastructure exposed is made. Section \ref{sec:Strengths&Weaknesses} explains some experiments with machine learning based in Kohonen's self-organizing maps (SOM) \cite{kohonen-1990} in order to improve the data analysis. Finally, we present concluding remarks and suggestions for future study.
+The rest of the paper is organized as follows: Section
+\ref{sec:deployment} the characteristic of the passive sensor and the
+infrastructure used are expected. In the section \ref{sec:analysis},
+the analysis of the registered data is presented. A critical analysis
+of the strong and weak points for the infrastructure exposed is
+made. Section \ref{sec:Strengths&Weaknesses} explains some experiments
+with machine learning based in Kohonen's self-organizing maps (SOM)
+\cite{kohonen-1990} in order to improve the data analysis. Finally, we
+present concluding remarks and suggestions for future study. 
 
 
 \section{Deployment of a Security System Based in Honeypots}
 \label{sec:deployment}
-This section describes the deploy of the system responsible for detecting the malicious activity in the network infrastructure and its components. Also, the elements and methods to use will be described.
+This section describes the deployment of the system responsible for
+detecting the malicious activity in the network infrastructure and its
+components. Also, the elements and methods to use will be described. 
 
 \subsection{Honeypots}
-A honeypot is a computer trap that exposes itself as bait. While the honeypot is scanned, probed or compromised by a cyber attack, it is collecting information about the malicious activity. The deception techniques have been present in tracking of security incidents \cite{Cheswick92anevening,RoleOfDeception}, even before its use in security software such as DTK\footnote{http://www.all.net/dtk/}. Honeypots were introduced in the cyber security investigation world by {\it``The Honeynet Project"} a nonprofit research group in 1999, in their series of papers {\it``Know Your Enemies"} \cite{KnowYourEnemies}. There are different classification characteristics such as interaction, distribution appearance or role in multi-tier architecture \cite{Seifert06taxonomyof}. The interaction is the degree of fidelity in the response of the trap. The distribution appearance describes whether the honeypot system appears to be confined to one system or multiple systems. Role, describes in what {\it role} acts within a multi-level architecture and can be server or client.
+A honeypot is a computer trap that exposes itself as bait. While the
+honeypot is scanned, probed or compromised by a cyber attack, it is
+collecting information about the malicious activity. The deception
+techniques have been present in tracking of security incidents
+\cite{Cheswick92anevening,RoleOfDeception}, even before its use in
+security software such as
+DTK\footnote{http://www.all.net/dtk/}. Honeypots were introduced in
+the cyber security investigation world by {\it``The Honeynet Project"}
+a nonprofit research group in 1999, in their series of papers
+{\it``Know Your Enemies"} \cite{KnowYourEnemies}. There are different
+classification characteristics such as interaction, distribution
+appearance or role in multi-tier architecture
+\cite{Seifert06taxonomyof}. The interaction is the degree of fidelity
+in the response of the trap. The distribution appearance describes
+whether the honeypot system appears to be confined to one system or
+multiple systems. Role, describes in what {\it role} acts within a
+multi-level architecture and can be server or client. 
 
 There is not an ideal configuration of features, or distribution of them inside de network, as there exist a huge effect on the nature of the threats and in the infrastructure to protect. For example in software development environments, high interaction are used for testing new products with {\it fuzzers} or another type of Penetration Testing (informally called {\it pentesting}) tool \cite{fuzzingforsec} in order to discover potential vulnerabilities. On the other hand, low interaction honeypots are used like intrusion detection systems, warning about activity of scans or jumping attempts from compromised internal hosts within production environments. Both share a common point: they are not intrusive with the network traffic.The architecture in our system is divided in two fronts:
 \begin{itemize}
