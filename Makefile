@@ -11,7 +11,7 @@ PDF = $(TEX:.tex=.pdf)
 all: $(PDF)
 
 auto:
-	latexmk -f -pdf -pvc
+	latexmk -bibtex -f -pdf -pvc
 
 clean:
 	latexmk -C
@@ -22,7 +22,7 @@ realclean: clean
 ###############################################################################
 
 %.pdf: %.tex $(EPS)
-	latexmk -pdf $*
+	latexmk -bibtex -pdf $*
 
 ###############################################################################
 

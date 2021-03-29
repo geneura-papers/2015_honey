@@ -1,269 +1,139 @@
 \documentclass[a4paper]{llncs}
 \usepackage[utf8]{inputenc}
 \usepackage{times,verbatim} % Please do not comment this
+\usepackage{graphicx}
+\graphicspath{ {images/} }
 
 \begin{document}
 
-\pagestyle{empty}
+	\pagestyle{empty}
 
-\mainmatter
+	\mainmatter
 
-\title{Cybersecurity in IT-Scientist Network Infrastructures by
-  Honeypots: Catching Cyber Threat Passively}
-% No deberías forzar saltos de página, Latex es muy listo para estas cosas - jj
-% Corregido.
-% El título no se entiende bien. Voy a por un issue. - JJ
-\titlerunning{Cybersecurity in IT-Scientist Network Infrastructures by Honeypots}
-% TIC en inglés es IT - JJ
-% Corregido.
-\author{Juan Luis Martin Acal \and Pedro A. Castillo Valdivieso
-\and Gustavo Romero López \and Juan Julián Merelo Guervós}
+	\title{Cybersecurity and honeypots: experience in a scientific network infrastructure} 
 
-\authorrunning{Juan Luis Martin Acal}
+	\titlerunning{Cybersecurity and honeypots: experience in a scientific network
+infrastructure}
 
-\institute{Springer-Verlag, Computer Science Editorial III,
-Postfach 10 52 80,\\
-69042 Heidelberg, Germany\\
-\email{jlmacal@correo.ugr.es}\\
-\email{\{pcv, gustavo\}@ugr.es}\\
-\email{jmerelo@ugr.es}\\
-\texttt{http://www.springer.de/comp/lncs/index.html}
-}
+	\author{Juan Luis Martin Acal \and Gustavo Romero López \and Pablo Palacín Gómez \and Pablo García Sánchez \and Juan Julián Merelo Guervós \and Pedro A. Castillo Valdivieso }
 
-\maketitle
+	\authorrunning{Juan Luis Martin Acal}
+
+	\institute{Departamento de Arquitectura y Tecnología de Computadores.\\ ETSIIT - CITIC. University of Granada, Spain\\
+	\email{jlmacal@correo.ugr.es}\\
+	\email{\{gustavo, pablo, pablogarcia, jmerelo, pacv\}@ugr.es}\\
+	}
+
+	\maketitle
 
 \begin{abstract}
-It should be a balance between security concerns and the right to
-privacy in the use of IT infrastructures. Scientist networks have a
-% What should be a balance? Wouldn't that be "There should be a
-% balance" or "IT infrastructures in universities and other research
-% centers should strike a balance between... - JJ"
-high risk of attack as a source of valuable information and resources
-because they were designed with an open and decentralized philosophy,
-in favour of the transmission of knowledge when security wasn't a
-critical section\cite{iris-proyecto}.  
-%No se ponen citas en el abstract - JJ
-%¿Sólo las universidades? ¿Por qué las universidades? - JJ
-%Porque en la concepción de sus redes se fomentó más el principio de
-%facilitar el acceso a la información frente a su protección - JL
-% Deberías hablar de las universidades en el título. NO IT-scientist - JJ
-%FERGU: Scientist networks->Scientific networks. Por otro lado empieza una frase categórica y de repente salto a lo de las redes. Pondría algo más literario, por ejemplo "When dealing with security concerns in the use of IT infraestructures a good balance between security concerns and the right to privacy should be mantained. This is very important in scientific networks, because they were created as... and they have..."
-%No uses contracciones en un paper "wasn't"->"was not"
-%Tampoco referencias en los abstracts, quita el iris-proyecto. Las leyes de los papers.
-%Bueno, y aunque no está mal del todo, en papers en inglés deberías citar papers en inglés. Busca una referencia equivalente a la que usas, pero en inglés, que queda más fino.
-Private and scientific information have a enormous value for an attacker but the end user is worried about his privacy too. %Par de
-             %fallos gordos de inglés. Por favor,
-             %tened cuidado- JJ
-             %FERGU: esto es repetir lo de arriba. Lo quitaría o lo pondría  más literario :) como antes : "Although private and sc. information have a great value for attackers, the end user privacy is an important ...blablabla"
-For this reason passive detection methods in cybersecurity like
-honeypots are the cornerstone in its defence plan. We expose the
-practical case of the University of Granada in the application of
-honeypots for the detection and study of intrusions which avoid
-intrusive techniques like the direct analysis of the traffic through
-networking devices. Also we expose the difficulties found in the
-information's analysis gathered. Finally we propose the application of
-machine learning to overcome them in future works. 
- % ¿Y cuál es el objetivo? ¿Caso de éxito? ¿Caso de fracaso? ¿Hay algo
- % original en la implementación de los honeypots? - JJ 
-%El objetivo es mostrar que son como medios de detección muy efectivos
-%sin necesidad de ser intrusivos en el trafico de red, pero que
-%requieren de machine learning para solventar algunas deficiencias en
-%cuanto a la deteccion de amenazas avanzadas se refiere. Exito
-%https://www.honeynet.org/about,
-%https://es.scribd.com/doc/174841947/Memoria, y "llamare" a los
-%argentinos a ver si tienen algo publicado de como les va con su
-%sistema - JL
-% Future work no va en el abstract. SE cuenta qué se va a hacer - JJ
-
-%FERGU: La primera frase "its defence plan". El plan de defensa de quien? Ponerlo más claro: Ejemplo: A good strategy to achieve this balance between security and privacy is the use of honeypots, as the can be the cornerstone of the defence plan of research agencies. In this paper, we present... Also, we expose (para no repetir expose)
-%like -> such as (esto me pasaba a mí también xD)
-%Tampoco se suele poner el uso del future work en los abstract (si usas esos métodos de ML en el paper quita lo de future works). Deja claro en el abstract cual es el objetivo de este trabajo
+When dealing with security concerns in the use of network infrastructures a good balance between security concerns and the right to privacy should be maintained. This is very important in scientific networks, because they were created with an open and decentralized philosophy, in favor of the transmission of knowledge, when security was not a essential topic.
+Although private and scientific information have an enormous value for an attacker, the user privacy for legal and ethical reasons must be respected. Thus, passive detection methods in cybersecurity such as honeypots are a good strategy to achieve this balance between security and privacy in the defense plan of a scientific network. In this paper we present the practical case of the University of Granada in the application of honeypots for the detection and study of intrusions, which avoid intrusive techniques such as the direct analysis of the traffic through networking devices.
 \end{abstract}
 
 
 \section{Introduction}
-From the earliest days, % ¿de qué? -JJ
-  networks have been experiencing an increasing number of
-  attacks. Nowadays, % pasas de earliest days a nowadays sin solución
-                     % de continuidad... algo tendrá que haber en
-                     % medio - JJ
-%Citar informes Norton y kaspersky anuales. - JL
-%FERGU: With the upswing of Internet, the number of attacks on networks have been increased significantly.
-the number of attacks increases continuously\cite{esset-tendencias}\cite{cni-ccn-tendencias-2014}. Scientist networks are a special and interesting case, % cita - JJ
-%Corregido
-%FERGU: para usar dos citas seguidas pon mejor \cite{esset-tendencias,cni-ccn-tendencias-2014}
-in one hand there is a strong demand of security in the network and the services which are listening. On the other hand, the end users demand privacy in his network traffic. In this scene the honeypots have an important role in the detection and protection against cyber attacks.
-% ¿Por qué la universidad? ¿Qué le hace especial? Si tienes una
-% universidad y quieres aplicarlo, ¿qué tienes que hacer? - JJ
-%Diseño abierto y sin seguridad original y aun muy implantado RED-IRIS - JL
-%Si tienes una universidad solo necesitas permiso del órgano responsable de la infraestructura de red y equipo multidisciplinar formado administración de redes y sistemas. - JL
+From the earliest days of computer networks, these have been experiencing continued growth in number of attacks \cite{esset-tendencias,cni-ccn-tendencias-2014,cni-ccn-tendencias-2015}. The complexity of these attacks against the information and resources in the networks has also increased. This escalation is motivated by economic, politic or military interests or by the same entities interested in exercise a bigger control over communication freedom in the Internet \cite{cni-ccn-tendencias-2015,cisco-2014}.
 
-%No suele haber subsecciones en la introducción. 
-%Unificar o sacar fuera del la introducción. -JL
-\subsection{Cyber-Space and Cyber-Threats}
-\label{sect:Scientist Networks}
+Although private and scientific information have an enormous value for an attacker, the user privacy for legal and ethical reasons must be respected by the Chief Security Officer (CSO). Scientific networks are a special and interesting case; in one hand there is a strong demand of security in the network and the resources and services which are listening. On the other hand, the end users demand privacy in his network traffic covered by the law. But classic Scientific networks were not designed thinking in security concerns \cite{iris-proyecto}. In contrast to the corporate networks, which usually have grown from the intranet to the Internet, and which have the most of hosts behind the demilitarized zone (DMZ), the scientist networks were born with an open philosophy without focusing on security \cite{iris-proyecto}. Only technical requirements such as the limited number of public IP address forced it to expand private services to the intranet. The information related to research, patents, computer and human resources is a juicy target for hostile agents. Also, the big size of the DMZ makes it prone to a massive attack and increases the possibility of finding a security breach or hide advanced vectors of attack. In this scenario the passive sensors have an important role in the detection and protection against cyber-attacks.
 
-The cyberspace is a virtual space that wraps all types of digital
-%Agh, ciberespacio... ¿todo esto para qué ? - JJ
-%Porque es un termino muy sobreexplotado por estar de moda por militares, inteligencia y empresas, cada cual se permite el definirlo a su gusto al intoducirlo. 
-%FERGU: estoy con JJ, el concepto cyberespacio fuera de los 90 ya no mola tanto xDDD Tampoco mola mucho esta sección (y aparte, como dice JJ no puede haber subsecciones en la introducción de un paper)
-communication  infrastructures and the entities that use them. The hostile actions from these entities against the security and safety of the information and others entities are ciberthreats. Internet is the most popular inhabitant of this space and for years we have seen how
-%agh, internet como habitante del ciberespacio... qué poco me gustan
-%los clichés - JJ
-%No te falta razón es un cliché...
-the number and complexity of attacks against information and resources has increased. This increase is motivated by  economic, politic or military interests or by the same entities interested in exercise a bigger control over communication freedom in the cyberspace\cite{cni-ccn-tendencias-2014}\cite{cni-ccn-tendencias-2015}.
-% Citas,
-% citas y más citas - JJ
-% corregido - JL
-\subsection{Scientist Networks}
-\label{sect:Scientist Networks}
-%FERGU: fuera subsecciones
-In contrast to the corporate networks which usually have grown from
-the inside to outside % inside to outside what? - JJ
-and which have most hosts behind the demilitarized
-zone (DMZ), %citaaaaaa!!!- JJ
-the scientist networks were born with a open philosophy without focusing on security but on technical requirements due to the limited number of public IPs, were expanding private services to the intranet \cite{iris-proyecto}.
+In this paper is presented the deployed of a security system in the University of Granada based in passive sensors in order to avoid intrusive techniques such as the direct analysis of the traffic through networking devices, and also it is exposed some test with the finality of complementing the manual tracking of incidents.
 
-The information related to research, patents, computer and human resources is a juicy target for hostile agents. Also, the big size of the DMZ %citaaaaa! - JJ
- makes it prone to a massive attack and increases the possibility of finding a security breach or hidden advance vectors of attack.
-%FERGU: este parrafo si está guay escrito
+The rest of the paper is organized as follows: Section \ref{sec:deployment} the characteristic of the passive sensor and the infrastructure used are expected. In the section \ref{sec:analysis}, the analysis of the registered data is presented. A critical analysis of the strong and weak points for the infrastructure exposed is made. Section \ref{sec:Strengths&Weaknesses} explains some experiments with machine learning based in Kohonen's self-organizing maps (SOM) \cite{kohonen-1990} in order to improve the data analysis. Finally, we present concluding remarks and suggestions for future study.
 
-\subsection{Privacy and Passive Sensors}
-\label{sect:Privacy and Passive Sensors}
-A honeypot is a trap that exposes itself, while is scanned, probed or compromised by a hostile entity, the trap collect information about the malicious activity. We differentiate between hierarchy and interaction in our taxonomy. The hierarchy is the complexity goes from a simple service like SSH, through a network, to a cloud. The interaction is the degree of fidelity in the response of the trap and goes from low to high.\\
-%FERGU: para enlazarlo con lo anterior puedes empezar con "To address all this issues, the honeypots have been used as method to... "  y con citas.
-%Mencionas a la taxonomia sin presentarla. Pon "In this paper we propose a taxonomy to categorize lo que sea".
-%"The hierarchy is the complexity goes from" No sé qué quiere decir esto, reescribelo mejor.
-TABLE HERE.
 
-There isn't a ideal configuration of features because 
-%FERGU: No usar contracciones: isn't is not. a ideal-> an ideal.
-is the nature of the threats and the infrastructure which we want to protect, the key for a correct selection of them.
-%FERGU: mejor reescribirlo como "There is not an ideal configuration of correct features for LOQUESEA, as there exist a huge effect on the nature of the treats and the infrastructure to LOQUESEA."
- In a software development environment, high interactions is used for 
-%FERGU: is used->are used.
- test a new product with {\it fuzzers} or another type of pentesting\footnote{Penetration Testing.}
- %FERGU: Cita describiendo fuzzers. Mejor poner "or another type of Penetration Testing (also called {\it pentesting}) tool \cite{algo}". Pon citas a todos los conceptos que uses
-  tool in order to discover potential vulnerabilities. On the other hand, low interaction honeypots are used like intrusion detection systems, warning about activity of scans or jumping attempts from compromised internal hosts. Both share a common point: they are not intrusive with the network traffic.
-
-%FERGU: Aqui irá el clásico párrafo de fin de introducción: En este paper presentamos tal. La sección \ref{sec:soa} describe el estado del arte en TAL. A continuación, en la sección \ref{laquesea} describimos tal ... Finalmente, se presentan las conclusiones y trabajo futuro.
 \section{Deployment of a Security System Based in Honeypots}
-The architecture of the system is divided in two fronts: detection and management of the ciberthreats. The detection front usually are based on honeypots, one the most valuable tools at hand for this purpose.\\
-%FERGU: no uses los \\ si no son necesarios, LaTeX se encarga de ponerlo bonico todo. También empieza la sección diciendo "Teniendo en cuenta lo que hemos expuesto anteriormente en el estado del arte, existen una serie de cosas que nosotros aprovechamos, el tal y el tal. En esta sección describimos..." Todas las secciones deben presentarse (esto es muy importante para el estilo del artículo).
-Sensors were deployed in different production subnets and each content honeypot software. Specifically Dionaea\cite{dionaea} and Kippo\cite{kippo} which are low and medium interaction honeypot respectively. 
-%FERGU: decir que es media y baja interacción (y citar a donde se describa). Di también: hemos usado baja y media interacción porque nos permite hacer tal...
-Each sensor has local data bases for save the information
-%FERGU: for save->to save. TRUCAZO: memoriza TO DO y FOR DOING. To <infinitivo> y For <gerundio>
- attacks efficiently in space 
-%FERGU: in space?
- while is waiting 
-%FERGU: while it is waiting (repite los pronombres si están muy lejos)
- for its saved 
-%FERGU: its savings? que son sus "saved"?
- in the collector in order to keep the information by duplicate and not to increase the network traffic in case of massive scans or attacks. Obviously, in the time space 
-%FERGU: quita el obviously, los lectores a lo mejor no lo tienen tan obvio (yo no lo sabía xD)
- between information dumps each sensor sends by telegram incidents
-%FERGU: by telegrams? Muy del siglo 19, no? xDDD Explica que es un telegrama (supongo que algo de seguridad) o pon "messages" mejor
-  defined by the security operator like critical. The collector is a corporate database that feeds the incidents management system 
-  and is 
-%FERGU: and it is (lo que te he dicho de los pronombres en inglés)
-  the core of all information analysis.
+\label{sec:deployment}
+This section describes the deploy of the system responsible for detecting the malicious activity in the network infrastructure and its components. Also, the elements and methods to use will be described.
 
-PONER GRAFICO
+\subsection{Honeypots}
+A honeypot is a computer trap that exposes itself as bait. While the honeypot is scanned, probed or compromised by a cyber attack, it is collecting information about the malicious activity. The deception techniques have been present in tracking of security incidents \cite{Cheswick92anevening,RoleOfDeception}, even before its use in security software such as DTK\footnote{http://www.all.net/dtk/}. Honeypots were introduced in the cyber security investigation world by {\it``The Honeynet Project"} a nonprofit research group in 1999, in their series of papers {\it``Know Your Enemies"} \cite{KnowYourEnemies}. There are different classification characteristics such as interaction, distribution appearance or role in multi-tier architecture \cite{Seifert06taxonomyof}. The interaction is the degree of fidelity in the response of the trap. The distribution appearance describes whether the honeypot system appears to be confined to one system or multiple systems. Role, describes in what {\it role} acts within a multi-level architecture and can be server or client.
 
-\section{Data analyse}
-%FERGU: Data analysis
-For three years each sensor collected information of more of half million of connections. The information's analysis shows the next points:
-%FERGU: no usar contracciones ('s). Pon mejor: The analysis of this high amount of information has provided the next facts/conclusions/sinonimo:
+There is not an ideal configuration of features, or distribution of them inside de network, as there exist a huge effect on the nature of the threats and in the infrastructure to protect. For example in software development environments, high interaction are used for testing new products with {\it fuzzers} or another type of Penetration Testing (informally called {\it pentesting}) tool \cite{fuzzingforsec} in order to discover potential vulnerabilities. On the other hand, low interaction honeypots are used like intrusion detection systems, warning about activity of scans or jumping attempts from compromised internal hosts within production environments. Both share a common point: they are not intrusive with the network traffic.The architecture in our system is divided in two fronts:
 \begin{itemize}
-\item External attacks are more frequent than internal attacks.
-\item In one hand the most frequent type of external attacks was weak credentials disclosure. On the other hand the most frequent type of internal attacks was malware propagation.
-\item Countries outside OTAN are the most active in the process of scanning and searching for vulnerabilities but curiously most of the intrusions come from OTAN member or member candidate countries. It is important to note that this data is dependent on the geolocation of where they are taken.
+	\item The management front has the task to help the operator to manage all the information related to security incidents.
+	\item The detection front is based on honeypots of medium and low interaction with stand-alone distribution appearance and server role.
 \end{itemize}
 
-The increment of attacks in this decade is a proven fact and the data cached shows us how externals attacks are the most frequent kind of attacks. This matches with studies of big security IT enterprises\cite{verizon-2015}. When we studied in detail the information, we saw many attempts of connection, some from scans to the network infrastructure and others looking for exploit vulnerabilities or services without strong credentials. About the latter ones is necessary to emphasize those that showed a more advanced level in the process of intrusion because were linked to Advance persistent threats (APT). One of the greatest dangers for IT infrastructures of governments, public administrations and companies are advance persistence threats. A cyberthreat is persistent if it is continuous in time and establishes monitoring and control mechanisms with hostile agent, and it is advanced because uses mechanisms in order to hide its activity in the system. Usually APT are related with cyberspying and elite groups of cybercrime and they are attacks directed against a specific infrastructure. For this reason it is a priority to detect and study them.
+\subsection{Deployment}
+The sensors were deployed in different production subnets and each one included honeypot software. Specifically Dionaea\footnote{http://dionaea.carnivore.it} and Kippo\footnote{https://github.com/desaster/kippo}, which are low and medium interaction honeypot respectively. Each sensor has local databases with the purpose of saving efficiently the information about attacks, while it is waiting to dump the data in the collector. This is done in order to keep the information duplicated and prevents an abusive use of communication between sensors and collector, in case of massive scans or attacks. Between two consecutives data dumps to the centralized data collector, the sensors send incidents by mean of the Linux client of the messaging software ``Telegram'' \footnote{https://telegram.org/} to the operator, in time-lapses lower than 5 minutes. The collector is a corporate database that feeds the incidents management system, and it is the source of the analyzed data.
 
-Malware propagation usually belong to advanced and persistent threats and come accompanied by a multivector attack. For example, the malware infect through the ms08\_67 and immediately attempting connect with a command ad control server (C\&C). In this point, start to protect itself through mutations of his own code, in order to hide from antivirus software, communicate through common protocols like HTTP to avoid rules for outgoing traffic firewall, it use encrypted communication by SSL to prevent the interception of information or generate thousands names of random domain to prevent the take down of the botnet.
+\section{Data analysis}
+\label{sec:analysis}
+This section is details the analysis of the information gathered and the behavior of detected cyber threats. We explain how this information shows the stages of the complex threats involved in multivector attacks, and the finality behind of advanced threats is discovered.
 
-But not always is easy follow the clue for rebuilding of a multivector attack. Usually the exploitation of SSH or MySQL weak credentials is the first step to gain the control or access to data in a server, but only a very reduced part shows a clever behavior behind the attack. Between hundred of thousand of connections only a few ones shows access to information to a service, then it use this informatión against other services and finally jumping to other hosts. A bit more frequent is the attempt to privilege elevation but the common behavior is use the base vulnerability in order to use his network and computational resources as soon as possible, in tasks like miner Litecoin\cite{litecoin}, increase the number of nodes for other scans of networks, for a future deny of service attack or use the compromised host like a anonymous proxy.
+For three years each sensor collected information of about half a million of connections. The analysis of this high amount of information has provided the next facts:
+\begin{itemize}
+	\item External attacks are more frequent than internal attacks.
+	\item In one hand the most frequent type of external attacks was weak credentials disclosure. On the other hand, the most frequent type of internal attack is the attempt of malicious software ({\it malware}) propagation.
+	\item The incident tracking shows how countries outside NATO are the most active in the process of scanning and searching for vulnerabilities; but curiously most of the intrusions come from NATO member or member candidate countries. It is important to note that this data depends on the geolocation where was taken and the relationship with other countries \cite{wiki-cyberwarfare-china,wiki-cyberwarfare-eeuu}.
+\end{itemize}
 
-When we rebuild the trace of the attack, the first advanced behavior that we find is the use of different hosts for scans and attacks and others for the intrusions and the explotations. The attack starts to scan subnets usually from countries without collaborations accord, in our case China. Then of the detection of the vulnerabilities, the exploitation is from Europe or United States. Obviously is not possible to be totally sure about the origin of the intrusion because we dodn't detect the use of proxies, but there isn't sense the use from countries like Chine for hidden its source in the intrusion stage but not in the scan stage. It has more relevance the inverse theory, the attack come from countries in a increase technology stage and many resources, where the culture of security isn't still high, finally the intrusion attempt is from a nearer geolocation of the attacker.
+\begin{figure}[h]
+	\centering{\includegraphics[width=0.49\textwidth,keepaspectratio]{dionaeaInternalExternal.png}}
+	\centering{\includegraphics[width=0.49\textwidth,keepaspectratio]{kippoInternalExternal.png}}
+	\caption{On the left, the number of IP involved in external attacks versus internal attacks detected by Dionaea from 17-11-2010 to 02-04-2014. On the right, the number of IP involved in external attacks versus internal attacks detected by Kippo between 09-05-2011 and 05-03-2014.\label{fig:intvsextDionaea}\label{fig:intvsextKippo}}
+\end{figure}
 
+Collected data shows how external attacks are the most frequent source of attacks as it is shown in Figure \ref{fig:intvsextDionaea}. This matches with studies of big security IT enterprises \cite{verizon-2015}. Several connections were obtained, some of them from scans to the network infrastructure and others looking for exploiting vulnerabilities or services without strong credentials. With respect the latter, it is necessary to emphasize those that shown a more advanced level in the process of intrusion because were linked to Advance Persistent Threats (APT) \cite{Sood&Enbody2013}. One of the greatest dangers for IT infrastructures of governments, public administrations and companies are APT. A cyber threat is persistent if it is continuous in time and establishes monitoring and control mechanisms with a hostile agent. It is defined as advanced if it uses mechanisms in order to hide its activity in the system. Usually, APT are related with cyberspying and elite groups of cybercrime and they are attacks directed against a specific infrastructure. For this reason, it is a priority to detect and study them.
+
+The most frequent type of attack from inside the network, it was malware propagation as it is shown in Figure \ref{fig:internalTypes}. Usually, it belongs to advanced and persistent threats included in multivector attacks. A attack is multivector whether it exploits multiple vulnerabilities in order to reach the intrusion and compromised goals. When a Windows host belonging to the infrastructure was compromised by a USB drive, after had communicated its incorporation to the ded and control server of the netbot, it started to scan its neighbors within the subnet. Then, it established connections with the sensors that  emulated the ms08-067 \cite{ms08067} vulnerability. After this, it commanded to the honeypot software to download the binary of trojan from a external web servers. This strategy avoided that firewalls blocked external infections to internal hosts through Server Message Block protocol (SMB) services. Finally, the infected host, would tried to spread the infection, scanning and attacking others subnets. This process is named {\it jumping}. In our system, this last stage was prevented by the low interaction characteristic.
+
+\begin{figure}[h]
+	\includegraphics[width=0.5\textwidth]{internalTypes.png}
+	\centering
+	\caption{The malware was main source of internal attacks, and shows a advanced behavior involved in multivector attacks.\label{fig:internalTypes}}
+\end{figure}
+
+It is quite difficult to follow the clue for rebuilding a multivector attack. Usually the exploitation of SSH or MySQL weak credentials is the first step to gain the control, or access to data, in the emulated server. But only a very reduced part shows a clever behavior behind the attack. Between hundred of thousand of connections only a few ones shows access to the fake information such as fake passwords. Then, intelligent attacker tried to use this information against other services with the purpose of  ``jumping'' inside them. A bit more frequent is the attempt to privilege elevation. But the common behavior is to use the basic vulnerability in order to use his network and computational resources as soon as possible. This resources were collected to be used in tasks like miner Litecoin\footnote{https://litecoin.org/}, increase the number of nodes for other network scans, for a future deny of service (DoS) attack or to use the compromised host like a anonymous proxy.
+
+When we rebuild the trace of the attack, the first advanced behavior that we find is the use of different hosts for scanning the infrastructure and change to others hosts for the exploitation. The attack starts to scan subnets usually from countries without collaborations accord, in our case China but finally the exploitation is from Europe or United States.
 
 \section{Strengths and Weaknesses of Honeypots}
-The strengths of honeypot are were:
+\label{sec:Strengths&Weaknesses}
+The strengths of honeypots and the deployed system are:
 \begin{itemize}
-\item It was not intrusive with network traffic, remained the privacy of infrastructure users. This is a important point because any try of to catch indirect traffic of network would been seen as a threat by other users and a infringement of the use conditions of the network and legality.
-\item The computational and economic resources needed for passive detection are lower because we have only the traffic belong to a potential cyber threat. This an alternative approach to other solutions more expensive like intrusion detection systems based in hardware.
-\item Cyberthreats like advanced malware uses ciphered communications in order to dodge detection systems in the network layer, the only way to catch information its from inside of the compromised node. This is essential if we want analyse how persistence cibertheraths monitors the compromised host and what informations sent outside to its C\&C network.
+	\item It was not intrusive with network traffic, respecting the privacy of infrastructure users. This is an important point because any try to catch indirect traffic network could be seen as a threat by other users as an infringement of the using conditions of the network and the legality.
+	\item The computational and economic resources needed for passive detection are lower because only the traffic belonging to a potential cyber threat are available. This an alternative approach to other solutions, more expensive, like intrusion detection systems based in hardware.
+	\item Cyber threats, such as advanced malware, use ciphered communications in order to dodge detection systems in the network layer. The only way to catch information is from inside of the compromised node. This is essential to analyze how persistence cyber threats monitor the compromised host and what information is sent outside, to the command and control network.
 \end{itemize}
 
-The weakness of the honeypot are:
+The weakness of honeypots and the deployed system are:
 \begin{itemize}
-\item There are many cyberthreats focused in the network layer, usually related with deny of services and spoofing. This information is very valuable because this kind of attack are a very important element not only in simple vector attacks, in multivector advanced and persistent attacks too. Honeypots only fetch information from the application layer so they lose essential information for reconstruction of complex attacks.
-\item The use of passive sensors in a security system must be planned with some extra considerations respect the use of active methods of detection. Those considerations cover strategies of deception and hiding of the sensors and politics of migrations in the infrastructure for avoiding it's location.
-\begin{itemize}
-	\item Like others deception tools, honeypots must show itself like interesting target for a attacker and avoid them to be easily recognizable by fingerprint techniques. Default installations and configurations in low an medium interaction honeypot are easily detected by a human attacker or a intelligent threat like advanced malware.
-	\item When attacker has knowledge of the infrastructure, honeypots are easily dodged so must be deployed together with politics of use like change its subnets or IP every so often.
-	\item High interaction honeypots are dangerous in production environments because the monitored sensor is completely real and all his potential in order to attack its periphery. Usually they are deploying in isolated subnets with outgoing traffic strongly restricted in company of others honeypots, that configuration is called honeynet.
+	\item There are many cyber threats focused in the network layer, usually related with deny of services and spoofing. This information is very valuable because this kind of attacks are a very important element, not only in simple vector attacks, in multivector advanced and persistent attacks too. Honeypots only fetch information from the application layer so they lose essential information for reconstruction of complex attacks.
+	\item The use of passive sensors in a security system must be planned with some extra considerations respect to the use of active methods of detection. Those considerations cover strategies of deception and hiding of the sensors and politics of migrations in the infrastructure for avoiding it's location.
+	\begin{itemize}
+		\item Like others deception tools, honeypots must show as interesting targets for an attacker and avoid to be easily recognizable by fingerprint techniques. Default installations and configurations in low an medium interaction honeypot are easily detected by a human attacker or an intelligent threat like advanced malware.
+		\item When the attacker has knowledge of the infrastructure, honeypots are easily dodged so they must be deployed together with policies of use, like change its subnets or IP every so often.
+		\item High interaction honeypots are dangerous in production environments because the monitored sensor is completely real and it has potential to attack periphery. Usually they are deployed in isolated subnets with outgoing traffic strongly restricted in company of others honeypots. That configuration is called honeynet.
+	\end{itemize}
 \end{itemize}
-\end{itemize}
 
+\section{Experiments with S.O.M}
+\label{sec:Improve}
+In this section, we expose an experiment with Self-Organizing Maps so as to classify information and we comment some interesting results.
 
-\section{Improving Honeypots, Hybrid Machine Learning S.I.E.M}
-VECTORES HONYPOT VS CONJUTOS DE DATOS DEL LEARNING MACHINE GROUP
-FALTA CHICA, CAPA DE RED, TCPDUMP O IDS PILLANDO DATA
+\begin{figure}[h]
+	\centering{\includegraphics[height=0.25\textheight,keepaspectratio]{subset1.png}}
+	\centering{\includegraphics[height=0.25\textheight,keepaspectratio]{subset2.png}}
+	\caption{On the left, the first subset of gathered attacks. On the right, the second subset of gathered attacks. Some services shows clusters more dispersed than other. Both  were taken on different dates and have some different types of attacks.\label{fig:SOMsubset1}\label{fig:SOMsubset2}}
+\end{figure}
 
-\section{Conclusions and Future Works}
-HAY QUE METER MACHINE LEARNING Y MINERIA DE DATOS DE LA BUENA A ESTOS DISPOSITIVOS.
+In order to classify the information of detected attacks, we apply the classification method described in \cite{panda-2009}, in two subsets of data. The first advantage is the simplification of the collected information derived from the dimensional reduction intrinsic to the method. The attacks are organized in 2D clusters.  This allows identify some interesting characteristics. The first thing that draws our attention in Figure \ref{fig:SOMsubset1} is how the attacks to HTTP, Microsoft SQL Server (MSSQL) and Session Initiation Protocol (SIP) are concentrated in areas better defined. It is because the cyberthreats showed less variability in their dimensional components. This can be explained by the nature of the connections of the attacks and the characteristics of the software used. A sweep scan to search for services in parallel with tools such as Nmap\footnote{https://nmap.org/} or malware with a very aggressive behavior, have a great variability in the component {\it"source port"}. On the other hand, when the connection comes from targeted attacks or advanced malware, the behavior observed is discrete so as to avoid intrusion detection systems, variability is lower.
 
+\begin{figure}[h]
+	\centering{\includegraphics[width=12cm,height=6cm,keepaspectratio]{subset3.png}}
+	\caption{Union between firs and second subset. The information is self-organized around the second diagonal and it was detected a fake attack to a hidden MySQL port such as a individual cluster.\label{fig:SOMsubset3}}
+\end{figure}
 
-\begin{thebibliography}{5}
-\bibitem{esset-tendencias}
-ESSET Latino América:
-Tendencias 2015: El mundo corporativo en la mira.
-January 2015.\\
-URL: http://http://www.welivesecurity.com/wp-content/uploads/2015/01/tendencias\_2015\_eset\_mundo\_corporativo.pdf
-Note: Chapter 2, page 6
-%
-\bibitem{cni-ccn-tendencias-2014}
-CNI-Centro Critográfico Nacional:
-Informe de Amenazas CCN-CERT IA-03/14: Ciberamenazas 2013 y Tendencias 2014.
-October 2014.\\
-URL:https://www.ccn-cert.cni.es/publico/dmpublidocuments/CCN-CERT\_IA-03-14-Ciberamenazas\_2013\_Tendencias\_2014-publico.pdf
-Note: Prologue, page 7,8
-%
-\bibitem{iris-proyecto}
-Subdirección General de Organización y Automación, Secretaía General Técnica, Ministerio de Educación y Ciencia:
-Proyecto IRIS.
-November 1985.\\
-URL:https://www.rediris.es/rediris/historia/programa-iris.pdf
-%
-\bibitem{cni-ccn-tendencias-2015}
-CNI-Centro Critográfico Nacional:
-CCN-CERT IA-09/15 Ciberamenazas\_2014 Tendencias\_2015 - Resumen Ejecutivo
-April 2015.\\
-URL:https://www.ccn-cert.cni.es/publico/dmpublidocuments/IE-Ciberamenazas2014-Tendencias-2015.pdf
-%
-\bibitem{dionaea}
-Mark Schloesser:
-URL: http://dionaea.carnivore.it/
-%
-\bibitem{kippo}
-desaster:
-https://github.com/desaster
-%
-\bibitem{verizon-2015}
-Verizon Enterprise:
-2015 Data Breach Investigations Report
-2015.\\
-http://www.verizonenterprise.com/resources/reports/rp\_data-breach-investigation-report-2015\_en\_xg.pdf
-%
-\bibitem{litecoin}
-https://litecoin.org/
-%
-\end{thebibliography}
-https://www.schneier.com/blog/archives/2008/06/it\_attacks\_insi.html
-http://www.verizonenterprise.com/resources/reports/rp\_data-breach-investigations-report-2013\_en\_xg.pdf
+Finally, information about fake advanced attack was injected in the first subset and the union of the previous subsets in a third subset was built. The information from both honeypots is arranged around the second diagonal. In the lower right area a cluster with connection attempts to MySQL service number displayed readily inverted port. Changing the default port number is a common practice to hide services. Port scannings with reverse numbering or multiple of the original denotes an intelligent behavior Figure \ref{fig:SOMsubset3}. SOM allow to obtain visual information to study it easily looking for  anomalies, candidates to attacks, with a intelligent behavior.
+
+\section{Conclusion and Future Works}
+\label{sec:conclusion&future}
+We have exposed how it is possible to develop a security system based in passive sensors. The range of detected attacks goes from elementary scans, to attempts of intrusions and malware injections. Although it is possible to identify and track manually APT, this is not efficient, and easily APT can pass unnoticed. Another problem is that the caught information with low interaction honeypots, it is restricted to the application layer. Classification methods initially discover information hidden by the large volume of data. 
+For this reason, it is proposed for future works the analysis of data from different sources in hybrid architectures, with different levels of interactions and the comparison. The use of different machine learning methods, supervised or unsupervised, in order to improve the detection of cyber threats will be studied.
+
+\bibliographystyle{splncs03}
+\bibliography{articuloHoneypot}
+
 \end{document}
-
